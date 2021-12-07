@@ -1,37 +1,50 @@
 import bs4 as bs
+import html5lib
 import requests
 import os
+import re
 from dotenv import load_dotenv
-import lxml
 
 class OtoMotoProgram:
     def __init__(self):
         load_dotenv()
         self.URL = os.environ.get("URL")
         self.response = requests.get(self.URL)
-        self.soup = bs.BeautifulSoup(self.response.text, 'lxml')
+        # self.soup = bs.BeautifulSoup(self.response.text, 'html.parser')
+        self.soup = bs.BeautifulSoup(self.response.content, 'html5lib')
+
         self.cars_list = []
 
     def Start(self):
         print(self.URL)
-        # print(self.DownloadPage())
         self.DownloadPage()
 
     def DownloadPage(self):
-        # cars_price = self.soup.find_all('span', class_='optimus-app-epvm6 e1b25f6f8')
-        # cars_price = self.soup.find_all('span', attrs={'class':'optimus-app-epvm6 e1b25f6f8'})
         # cars_price = self.soup.find_all('span', class_='offer-price__number ds-price-number')
-        cars_price = self.soup.find('span', class_='offer-price__number ds-price-number').contents[1]
-        # <span class="offer-price__number ds-price-number">
+
+
+        # cars_price = self.soup.find('span', class_='offer-price__number ds-price-number').contents[1]
+        # for price in cars_price:
+        #     self.cars_list.append(price)
+        #     print(price)
+        #
+        # print(self.cars_list)
+
+        # cars_price = self.soup.find_all('span', class_='offer-price__number ds-price-number')
+        # for price in cars_price:
+        #     self.cars_list.append(price.contents[1])
+        #     print(price)
+        #
+        # print(len(cars_price) ,"\n", cars_price[0])
+
+        cars_price = self.soup.find_all('span', class_='offer-price__number ds-price-number')
 
         for price in cars_price:
-            self.cars_list.append(price)
-            print(price)
+            price = price.find_next('span')
+            self.cars_list.append(price.text)
+            # print(price.string)
 
-        # print(cars_price)
+        # print(len(cars_price))
+        print(self.cars_list)
 
-
-        # print(self.soup.find_all())
-        #robimy petle w ktorej pobieramy pojedynczo article i sprwadzmy czy dla danego article parametry
-        # sa wlasciwe, jezeli sa wlasciwe to dodajemy do cars_price (unikamy przede wszystkim innych ofert od naszych BMW
 
