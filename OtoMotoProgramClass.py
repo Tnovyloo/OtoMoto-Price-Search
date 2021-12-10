@@ -109,8 +109,12 @@ class OtoMotoProgram:
         # sort_price_list()
         show_label()
 
+        #TODO Napraw wyszukiwanie ceny i hrefu, zrob to w jednej funkcji aby sie to nie rozjezdżało
+        #TODO Sprobowac zrobic powyzszy punkt w Selenium
+
         #TODO Sortuj wyniki rosnaco, malejaco, wybierz dany przedział ceny
         #TODO Wyswietlaj ceny w wybranej walucie
+
 
         # print(self.price_cars_list)
         # print(self.link_cars_list)
