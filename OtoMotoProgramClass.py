@@ -18,14 +18,13 @@ class OtoMotoProgram:
     def Start(self):
         print(self.URL)
         self.DownloadPage()
-        self.Work_with_data()
+        # self.Work_with_data()
 
     def DownloadPage(self):
 
         def find_price():
             """Finding price of cars in page"""
             cars_price = self.soup.findAll('span', class_='offer-price__number ds-price-number')
-
             for price in cars_price:
                 # price = price.find_next('span')
                 price = price.find('span')
@@ -50,10 +49,10 @@ class OtoMotoProgram:
         def find_page(func):
             """Downloads amount of pages"""
             webpages = self.soup.findAll('span', class_="page")
+            print(webpages)
             self.page_list = []
             for page in webpages:
                 self.page_list.append(page.text)
-
             return func
 
         @find_page
@@ -70,10 +69,10 @@ class OtoMotoProgram:
                 self.URL = (self.URL[:-1] + f"{page}")
                 print(self.URL)
 
+
         go_to_page()
         # print(f'indexes of otomotoklik is: {self.index_list}')
         # print(self.response)
-
     def Work_with_data(self):
 
         def sort_cars_list():
