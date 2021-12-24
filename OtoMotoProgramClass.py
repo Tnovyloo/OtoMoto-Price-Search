@@ -100,12 +100,17 @@ class OtoMotoProgram:
 
         #TODO Sortuj dictionary poprzez klucz, dokończ funkcję asceding()
 
-        # def price_ascending():
+        def price_ascending():
             # for key in self.car_dict.keys():
             #     print(key)
             # for key in sorted(self.car_dict.keys()):
             #     print(key)
             # self.car_dict = {k: v for k, v in sorted(list(self.car_dict.items()))}
+
+            for key in sorted(self.car_dict.keys()):
+                print(key)
+
+            #TODO zrobic sortowanie cen metodą dodania do linku '&search%5Border%5D=filter_float_price%3Aasc'
 
         def create_label():
             zip_iterator = zip(self.price_cars_list, self.link_cars_list)
