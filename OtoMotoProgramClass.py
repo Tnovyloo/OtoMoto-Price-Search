@@ -3,12 +3,13 @@ import html5lib
 import requests
 import os
 from dotenv import load_dotenv
+from forex_python.converter import CurrencyRates
 
 class OtoMotoProgram:
     def __init__(self):
         load_dotenv()
-        # self.URL = os.environ.get("URL")
-        self.URL = input("Provide Otomoto link with \nsearch criteria and price criteria: ")
+        self.URL = os.environ.get("URL")
+        # self.URL = input("Provide Otomoto link with \nsearch criteria and price criteria: ")
         self.response = requests.get(self.URL).text
         # self.soup = bs.BeautifulSoup(self.response, 'html5lib')
         self.soup = bs.BeautifulSoup(self.response, 'html.parser')
@@ -32,7 +33,7 @@ class OtoMotoProgram:
             cars_price = self.soup.findAll('span', class_='optimus-app-epvm6 e1b25f6f8')
 
             for price in cars_price:
-                self.price_cars_list.append(str(price.text).strip('PLN'))
+                self.price_cars_list.append(str(price.text).strip('PLN '))
 
         def find_link():
             """Finding link of car"""
@@ -82,7 +83,16 @@ class OtoMotoProgram:
             for prize, car in self.car_dict.items():
                 print(f"Prize - {prize} PLN / Link - {car}")
 
+        #TODO Wyswietlaj ceny w wybranej walucie
+        def currency_rate():
+            c = CurrencyRates()
+
+            currency = c.get_rate('PLN', 'EUR')
+            for key in self.car_dict.keys():
+                print(float(key.strip(' ')) * currency)
+
+
         create_label()
         show_label()
+        # currency_rate()
 
-        #TODO Wyswietlaj ceny w wybranej walucie
