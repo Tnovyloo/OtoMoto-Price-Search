@@ -18,10 +18,9 @@ class OtoMotoProgram:
         self.page_list = []
         self.index_list = []
         self.car_dict = {}
-        self.choice = None
+        self.user_input = None
 
     def Start(self):
-        # print(self.URL)
         self.DownloadPage()
         self.Work_with_data()
 
@@ -85,14 +84,19 @@ class OtoMotoProgram:
 
         #TODO Wyswietlaj ceny w wybranej walucie
         def currency_rate():
+            """Currency module"""
             c = CurrencyRates()
-
-            currency = c.get_rate('PLN', 'EUR')
+            self.user_input = input("Type currency (EUR, GBP, USD): ").upper()
+            currency = c.get_rate('PLN', self.user_input)
             for key in self.car_dict.keys():
-                print(float(key.strip(' ')) * currency)
+                new_key = round(float(key.replace(' ', '')) * currency)
+                self.car_dict[new_key] = self.car_dict[key]
+
+                #find key from dict and set actual prize
 
 
         create_label()
         show_label()
         # currency_rate()
+        # show_label()
 
