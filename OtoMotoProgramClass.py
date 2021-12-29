@@ -18,7 +18,7 @@ class OtoMotoProgram:
         self.page_list = []
         self.index_list = []
         self.car_dict = {}
-        self.user_input = None
+        self.user_input = 'PLN'
 
     def Start(self):
         self.DownloadPage()
@@ -60,7 +60,7 @@ class OtoMotoProgram:
         def go_to_page():
             """Going to all pages and downloads data to list"""
             # print(self.page_list)
-            pages = int(self.page_list[-1]) + 1
+            pages = int(self.page_list[-1]) + 1 #bład
             self.URL = (self.URL[:] + f"&page=0")
             for page in range(pages):
                 self.response = requests.get(self.URL).text
@@ -80,7 +80,7 @@ class OtoMotoProgram:
 
         def show_label():
             for prize, car in self.car_dict.items():
-                print(f"Prize - {prize} PLN / Link - {car}")
+                print(f"Prize - {prize} {self.user_input} / Link - {car}")
 
         #TODO Wyswietlaj ceny w wybranej walucie
         def currency_rate():
@@ -88,15 +88,20 @@ class OtoMotoProgram:
             c = CurrencyRates()
             self.user_input = input("Type currency (EUR, GBP, USD): ").upper()
             currency = c.get_rate('PLN', self.user_input)
-            for key in self.car_dict.keys():
+            tempdict = list(self.car_dict.items())
+            self.car_dict.clear()
+
+            for key, value in tempdict:
                 new_key = round(float(key.replace(' ', '')) * currency)
-                self.car_dict[new_key] = self.car_dict[key]
+                self.car_dict[new_key] = value
 
-                #find key from dict and set actual prize
-
+            # for k, v in tempdict:
+            #     new_k = round(float(k.replace(' ', '')) * currency)
+            #     k = new_k
+            #     print(f"{k}    {v}")
 
         create_label()
         show_label()
-        # currency_rate()
-        # show_label()
+        currency_rate()
+        show_label()
 
