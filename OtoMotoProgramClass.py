@@ -1,5 +1,4 @@
 import bs4 as bs
-import html5lib
 import requests
 import os
 from dotenv import load_dotenv
@@ -11,7 +10,6 @@ class OtoMotoProgram:
         self.URL = os.environ.get("URL")
         # self.URL = input("Provide Otomoto link with \nsearch criteria and price criteria: ")
         self.response = requests.get(self.URL).text
-        # self.soup = bs.BeautifulSoup(self.response, 'html5lib')
         self.soup = bs.BeautifulSoup(self.response, 'html.parser')
         self.price_cars_list = []
         self.link_cars_list = []
@@ -21,8 +19,28 @@ class OtoMotoProgram:
         self.user_input = 'PLN'
 
     def Start(self):
+        print('\nWelcome to OtoMoto Car-Scraper!\n'
+              'Now i will download data from your URL')
+
         self.DownloadPage()
-        self.Work_with_data()
+
+        n = -1
+        while n != 0:
+            print('Type:\n'
+                  '1 - If you want to print label\n'
+                  '2 - If you want to change Currency\n'
+                  '3 - If you want to exit')
+            n = int(input("Type number: "))
+
+            if n == 1:
+                self.Showing_Data()
+            if n == 2:
+                self.Currency_method()
+            if n == 3:
+                return None
+
+        # self.DownloadPage()
+        # self.Work_with_data()
 
     def DownloadPage(self):
 
@@ -41,8 +59,6 @@ class OtoMotoProgram:
                                            class_='e1b25f6f13 optimus-app-1mgjl0z-Text eu5v0x0')
 
             for link in cars_links:
-                # link = link.find('h2', class_='offer-title ds-title').text
-                # link = link.find('a', class_='offer-title__link', href=True)
                 link = link.find('a', href=True)
                 self.link_cars_list.append(link['href'])
 
@@ -50,7 +66,6 @@ class OtoMotoProgram:
             """Downloads amount of pages"""
             # webpages = self.soup.findAll('span', class_="page")
             webpages = self.soup.findAll('a', class_='optimus-app-g4wbjr ekxs86z0')
-            # print(webpages)
             self.page_list = []
             for page in webpages:
                 self.page_list.append(page.text)
@@ -59,8 +74,8 @@ class OtoMotoProgram:
         @find_page
         def go_to_page():
             """Going to all pages and downloads data to list"""
-            # print(self.page_list)
-            pages = int(self.page_list[-1]) + 1 #bład
+            pages = int(self.page_list[-1]) + 2
+            print(pages)
             self.URL = (self.URL[:] + f"&page=0")
             for page in range(pages):
                 self.response = requests.get(self.URL).text
@@ -68,12 +83,12 @@ class OtoMotoProgram:
                 find_link()
                 find_price()
                 self.URL = (self.URL[:-1] + f"{page}")
-                print(f'Wczytuję {self.URL}')
+                print(f'Pobieram dane ze strony {page}')
 
         go_to_page()
 
-    def Work_with_data(self):
-
+    def Showing_Data(self):
+        """Printing labels"""
         def create_label():
             zip_iterator = zip(self.price_cars_list, self.link_cars_list)
             self.car_dict = dict(zip_iterator)
@@ -82,7 +97,11 @@ class OtoMotoProgram:
             for prize, car in self.car_dict.items():
                 print(f"Prize - {prize} {self.user_input} / Link - {car}")
 
-        #TODO Wyswietlaj ceny w wybranej walucie
+        create_label()
+        show_label()
+
+    def Currency_method(self):
+        """Refactoring currency method"""
         def currency_rate():
             """Currency module"""
             c = CurrencyRates()
@@ -95,13 +114,8 @@ class OtoMotoProgram:
                 new_key = round(float(key.replace(' ', '')) * currency)
                 self.car_dict[new_key] = value
 
-            # for k, v in tempdict:
-            #     new_k = round(float(k.replace(' ', '')) * currency)
-            #     k = new_k
-            #     print(f"{k}    {v}")
+            print("Changing currency completed!")
 
-        create_label()
-        show_label()
         currency_rate()
-        show_label()
 
+    #TODO ZROBIC PROGRAM W TAKI SPOSÓB ABY MOŻNA BYŁO SIE ODWOŁYWAĆ DO FUNKCJI FUNKCJAMI np: Currency_method.currency_rate()
