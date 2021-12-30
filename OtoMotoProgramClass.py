@@ -26,7 +26,7 @@ class OtoMotoProgram:
 
         n = -1
         while n != 0:
-            print('Type:\n'
+            print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
                   '3 - If you want to exit')
@@ -75,7 +75,6 @@ class OtoMotoProgram:
         def go_to_page():
             """Going to all pages and downloads data to list"""
             pages = int(self.page_list[-1]) + 2
-            print(pages)
             self.URL = (self.URL[:] + f"&page=0")
             for page in range(pages):
                 self.response = requests.get(self.URL).text
@@ -97,8 +96,22 @@ class OtoMotoProgram:
             for prize, car in self.car_dict.items():
                 print(f"Prize - {prize} {self.user_input} / Link - {car}")
 
+        #TODO price asc
+        def price_asc():
+            """Show price ascending"""
+            tempdict = list(self.car_dict.items())
+            self.car_dict.clear()
+
+            for key, value in tempdict:
+                new_key = key.replace(' ', '')
+                self.car_dict[new_key] = value
+
+            for key in sorted(self.car_dict.keys()):
+                print(key)
+
         create_label()
         show_label()
+        price_asc()
 
     def Currency_method(self):
         """Refactoring currency method"""
@@ -119,3 +132,4 @@ class OtoMotoProgram:
         currency_rate()
 
     #TODO ZROBIC PROGRAM W TAKI SPOSÓB ABY MOŻNA BYŁO SIE ODWOŁYWAĆ DO FUNKCJI FUNKCJAMI np: Currency_method.currency_rate()
+    #TODO ZROBIC ZAPISYWANIE W WYNIKÓW W NOTATNIKU
