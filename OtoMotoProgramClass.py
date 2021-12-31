@@ -20,7 +20,7 @@ class OtoMotoProgram:
 
     def Start(self):
         print('\nWelcome to OtoMoto Car-Scraper!\n'
-              'Now i will download data from your URL')
+              'Now i will download data from your URL\n')
 
         self.DownloadPage()
 
@@ -29,7 +29,8 @@ class OtoMotoProgram:
             print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
-                  '3 - If you want to exit')
+                  '3 - If you want to save auctions in .txt\n'
+                  '4 - If you want to close program')
             n = int(input("Type number: "))
 
             if n == 1:
@@ -37,7 +38,9 @@ class OtoMotoProgram:
             if n == 2:
                 self.Currency_method()
             if n == 3:
-                return None
+                self.Saving_To_Txt()
+            if n == 4:
+                break
 
         # self.DownloadPage()
         # self.Work_with_data()
@@ -82,7 +85,7 @@ class OtoMotoProgram:
                 find_link()
                 find_price()
                 self.URL = (self.URL[:-1] + f"{page}")
-                print(f'Pobieram dane ze strony {page}')
+                print(f'Downloading data from page {page}')
 
         go_to_page()
 
@@ -93,16 +96,16 @@ class OtoMotoProgram:
             self.car_dict = dict(zip_iterator)
 
         def show_label():
-            for prize, car in self.car_dict.items():
-                print(f"Prize - {prize} {self.user_input} / Link - {car}")
+            for price, car in self.car_dict.items():
+                print(f"Price - {price} {self.user_input} / Link - {car}")
 
         #TODO price asc
         def price_asc():
             """Show price ascending"""
-            tempdict = list(self.car_dict.items())
+            temp_dict = list(self.car_dict.items())
             self.car_dict.clear()
 
-            for key, value in tempdict:
+            for key, value in temp_dict:
                 new_key = key.replace(' ', '')
                 self.car_dict[new_key] = value
 
@@ -111,7 +114,7 @@ class OtoMotoProgram:
 
         create_label()
         show_label()
-        price_asc()
+        # price_asc()
 
     def Currency_method(self):
         """Refactoring currency method"""
@@ -120,10 +123,10 @@ class OtoMotoProgram:
             c = CurrencyRates()
             self.user_input = input("Type currency (EUR, GBP, USD): ").upper()
             currency = c.get_rate('PLN', self.user_input)
-            tempdict = list(self.car_dict.items())
+            temp_dict = list(self.car_dict.items())
             self.car_dict.clear()
 
-            for key, value in tempdict:
+            for key, value in temp_dict:
                 new_key = round(float(key.replace(' ', '')) * currency)
                 self.car_dict[new_key] = value
 
@@ -131,5 +134,11 @@ class OtoMotoProgram:
 
         currency_rate()
 
-    #TODO ZROBIC PROGRAM W TAKI SPOSÓB ABY MOŻNA BYŁO SIE ODWOŁYWAĆ DO FUNKCJI FUNKCJAMI np: Currency_method.currency_rate()
-    #TODO ZROBIC ZAPISYWANIE W WYNIKÓW W NOTATNIKU
+    def Saving_To_Txt(self):
+        print("\nSaving data to .txt file\n")
+        file = open('Otomoto-PriceList.txt', 'a')
+        for key, value in self.car_dict.items():
+            file.writelines(f"Price {key} - Link {value}\n")
+        print("\nSuccessfully completed!\n")
+
+    #TODO ZROBIC PROGRAM W TAKI SPOSÓB ABY FUNKCJE BYLY STATYCZNE
