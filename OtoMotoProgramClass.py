@@ -150,5 +150,3 @@ class OtoMotoProgram:
             file.writelines(f"Price {key} - Link {value}\n")
         file.close()
         print("\nSuccessfully completed!\n")
-
-    #TODO ZROBIC PROGRAM W TAKI SPOSÓB ABY FUNKCJE BYLY STATYCZNE
