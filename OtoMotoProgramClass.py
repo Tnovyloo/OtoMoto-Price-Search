@@ -30,7 +30,8 @@ class OtoMotoProgram:
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
                   '3 - If you want to save auctions in .txt\n'
-                  '4 - If you want to close program')
+                  '4 - If you want to change URL\n'
+                  '5 - If you want to close program')
             n = int(input("Type number: "))
 
             if n == 1:
@@ -40,6 +41,10 @@ class OtoMotoProgram:
             if n == 3:
                 self.Saving_To_Txt()
             if n == 4:
+                self.URL = input("Type URL from Otomoto")
+                print("Now i will download data")
+                self.DownloadPage()
+            if n == 5:
                 break
 
         # self.DownloadPage()
@@ -135,10 +140,15 @@ class OtoMotoProgram:
         currency_rate()
 
     def Saving_To_Txt(self):
-        print("\nSaving data to .txt file\n")
-        file = open('Otomoto-PriceList.txt', 'a')
+        zip_iterator = zip(self.price_cars_list, self.link_cars_list)
+        self.car_dict = dict(zip_iterator)
+
+        namefile = input("Type file name: ")
+        print(f"\nSaving data to {namefile}.txt file\n")
+        file = open(f"{namefile}.txt", 'a')
         for key, value in self.car_dict.items():
             file.writelines(f"Price {key} - Link {value}\n")
+        file.close()
         print("\nSuccessfully completed!\n")
 
     #TODO ZROBIC PROGRAM W TAKI SPOSÓB ABY FUNKCJE BYLY STATYCZNE
