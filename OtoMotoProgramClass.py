@@ -1,6 +1,7 @@
 import bs4 as bs
 import requests
 import os
+import webbrowser
 from dotenv import load_dotenv
 from forex_python.converter import CurrencyRates
 
@@ -31,7 +32,8 @@ class OtoMotoProgram:
                   '2 - If you want to change Currency\n'
                   '3 - If you want to save auctions in .txt\n'
                   '4 - If you want to change URL\n'
-                  '5 - If you want to close program')
+                  '5 - If you want to open auctions in Web-browser\n'
+                  '6 - If you want to close program\n')
             n = int(input("Type number: "))
 
             if n == 1:
@@ -45,6 +47,9 @@ class OtoMotoProgram:
                 print("Now i will download data")
                 self.DownloadPage()
             if n == 5:
+                print()
+                self.Open_in_Browser()
+            if n == 6:
                 break
 
         # self.DownloadPage()
@@ -150,3 +155,21 @@ class OtoMotoProgram:
             file.writelines(f"Price {key} - Link {value}\n")
         file.close()
         print("\nSuccessfully completed!\n")
+
+    def Open_in_Browser(self):
+        """Opening in browser method"""
+        x = 0
+        count_of_tabs = int(input("How much tabs you want to open?: "))
+        while True:
+            user_input = input(f"Do you want to open {abs(count_of_tabs)} new tabs of auctions? (Y/N): ")
+            if user_input.lower() == "y":
+                if count_of_tabs <= len(self.link_cars_list):
+                    for i in range(x, abs(x+count_of_tabs)):
+                        webbrowser.open_new_tab(self.link_cars_list[i])
+                else:
+                    print(f"{count_of_tabs} > {len(self.link_cars_list)}")
+                    return False
+
+                x += count_of_tabs
+            else:
+                return False
