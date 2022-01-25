@@ -145,6 +145,7 @@ class OtoMotoProgram:
         currency_rate()
 
     def Saving_To_Txt(self):
+        """Saving in .txt method """
         zip_iterator = zip(self.price_cars_list, self.link_cars_list)
         self.car_dict = dict(zip_iterator)
 
@@ -159,13 +160,16 @@ class OtoMotoProgram:
     def Open_in_Browser(self):
         """Opening in browser method"""
         x = 0
-        count_of_tabs = int(input("How much tabs you want to open?: "))
+        count_of_tabs = abs(int(input("How much tabs you want to open?: "))) # Amount of opening tabs
         while True:
-            user_input = input(f"Do you want to open {abs(count_of_tabs)} new tabs of auctions? (Y/N): ")
-            if user_input.lower() == "y":
+            user_input = input(f"Open {count_of_tabs} new tabs of auctions? (Y/N): ").lower()
+            if user_input == "y":
                 if count_of_tabs <= len(self.link_cars_list):
-                    for i in range(x, abs(x+count_of_tabs)):
-                        webbrowser.open_new_tab(self.link_cars_list[i])
+                    for i in range(x, x+count_of_tabs):
+                        if i > len(self.link_cars_list):
+                            return False
+                        else:
+                            webbrowser.open_new_tab(self.link_cars_list[i])
                 else:
                     print(f"{count_of_tabs} > {len(self.link_cars_list)}")
                     return False
