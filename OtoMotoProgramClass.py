@@ -60,16 +60,18 @@ class OtoMotoProgram:
         def find_price():
             """Finding price of cars in page"""
             # cars_price = self.soup.findAll('span', class_='offer-price__number ds-price-number')
-            cars_price = self.soup.findAll('span', class_='optimus-app-epvm6 e1b25f6f8')
-
+            # cars_price = self.soup.findAll('span', class_='optimus-app-epvm6 e1b25f6f8')
+            cars_price = self.soup.findAll('span', class_='ooa-epvm6 e1b25f6f8')
             for price in cars_price:
                 self.price_cars_list.append(str(price.text).strip('PLN '))
 
         def find_link():
             """Finding link of car"""
             # cars_links = self.soup.findAll('div', class_='offer-item__title')
+            # cars_links = self.soup.findAll('h2',
+            #                                class_='e1b25f6f13 optimus-app-1mgjl0z-Text eu5v0x0')
             cars_links = self.soup.findAll('h2',
-                                           class_='e1b25f6f13 optimus-app-1mgjl0z-Text eu5v0x0')
+                                           class_='e1b25f6f13 ooa-1mgjl0z-Text eu5v0x0')
 
             for link in cars_links:
                 link = link.find('a', href=True)
@@ -78,16 +80,18 @@ class OtoMotoProgram:
         def find_page(func):
             """Downloads amount of pages"""
             # webpages = self.soup.findAll('span', class_="page")
-            webpages = self.soup.findAll('a', class_='optimus-app-g4wbjr ekxs86z0')
+            # webpages = self.soup.findAll('a', class_='optimus-app-g4wbjr ekxs86z0')
+            webpages = self.soup.findAll('a', class_='ooa-g4wbjr ekxs86z0')
             self.page_list = []
             for page in webpages:
                 self.page_list.append(page.text)
+            print(self.page_list)
             return func
 
         @find_page
         def go_to_page():
             """Going to all pages and downloads data to list"""
-            pages = int(self.page_list[-1]) + 2
+            pages = int(self.page_list[-1]) + 1
             self.URL = (self.URL[:] + f"&page=0")
             for page in range(pages):
                 self.response = requests.get(self.URL).text
