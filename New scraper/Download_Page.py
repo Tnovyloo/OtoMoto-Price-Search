@@ -35,7 +35,9 @@ class DownloadPage:
             # webpages = self.soup.findAll('a', class_='optimus-app-g4wbjr ekxs86z0')
             webpages = self.soup.findAll('a', class_='ooa-g4wbjr ekxs86z0')
             # TODO Small issue with otomoto
-            print(webpages)
+            if len(webpages) == 0:
+                print("There is a problem with Otomoto servers")
+
             self.page_list = []
             for page in webpages:
                 self.page_list.append(page.text)
