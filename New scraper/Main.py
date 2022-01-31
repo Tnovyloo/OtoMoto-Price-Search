@@ -6,7 +6,7 @@ from Saving_Data import SavingToTxt
 from Currency_Module import Currency
 from Browser_Module import BrowserModule
 from Import_Data import  ImportData
-from URL_Module import get_url
+from URL_Module import get_url, save_url
 
 class Start:
     def __init__(self):
@@ -72,8 +72,7 @@ class Start:
                 print("Now i will download data")
                 self.page.downloading_page()
             if n == 6:
-                pass
-                #TODO SAVE URL METHOD
+                save_url(self.URL)
             if n == 7:
                 print()
                 self.browser.open_in_browser()

@@ -14,6 +14,7 @@ def get_url():
                 return url
             except ValueError:
                 urls_list.append(choice)
+                file.write(choice)
                 return choice
         else:
             print(f'There is no urls, please add one')
@@ -23,6 +24,8 @@ def get_url():
             return urls_list[0]
 
 
-def save_url():
-    #TODO
-    pass
+def save_url(url):
+    with open('url.txt', 'w') as file:
+        file.write(url)
+        file.close()
+        print('Your link was saved!')
