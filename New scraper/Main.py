@@ -6,12 +6,14 @@ from Saving_Data import SavingToTxt
 from Currency_Module import Currency
 from Browser_Module import BrowserModule
 from Import_Data import  ImportData
+from URL_Module import get_url
 
 class Start:
     def __init__(self):
         load_dotenv()
-        self.URL = os.environ.get("URL")
+        # self.URL = os.environ.get("URL")
         self.user_input = 'PLN'
+        self.URL = get_url()
 
         #TODO Funckja ktora zapyta nas o link
         # link do wyboru z env (gdzie mozemy je tam zapisac) / wklejenia
@@ -37,8 +39,7 @@ class Start:
         self.importdata = ImportData()
 
     def start(self):
-        print('\nWelcome to OtoMoto Car-Scraper!\n'
-              'Now i will download data from your URL\n')
+        print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
         while n != 0:
@@ -66,6 +67,7 @@ class Start:
                 self.show.user_input = self.importdata.userinput
                 self.show.price_cars_list = self.importdata.price_list
             if n == 5:
+                #TODO Tutaj pasuje dac do wyboru linku
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
                 self.page.downloading_page()
