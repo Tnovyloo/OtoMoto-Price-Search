@@ -15,9 +15,6 @@ class Start:
         self.user_input = 'PLN'
         self.URL = get_url()
 
-        #TODO Funckja ktora zapyta nas o link
-        # link do wyboru z env (gdzie mozemy je tam zapisac) / wklejenia
-
         self.page = DownloadPage(url=self.URL)
         self.price_cars_list,\
         self.link_cars_list = self.page.downloading_page()
@@ -42,7 +39,7 @@ class Start:
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
-        while n != 0:
+        while n != 8:
             print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
@@ -56,6 +53,7 @@ class Start:
 
             if n == 1:
                 self.show.show_label()
+                #TODO Price ascending
             if n == 2:
                 self.user_input = self.currency.currency_rate()
                 self.show.user_input = self.user_input
@@ -67,7 +65,6 @@ class Start:
                 self.show.user_input = self.importdata.userinput
                 self.show.price_cars_list = self.importdata.price_list
             if n == 5:
-                #TODO Tutaj pasuje dac do wyboru linku
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
                 self.page.downloading_page()
