@@ -39,7 +39,7 @@ class Start:
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
-        while n != 8:
+        while n != 9:
             print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
@@ -48,7 +48,8 @@ class Start:
                   '5 - If you want to change URL\n'
                   '6 - If you want to save URL\n'
                   '7 - If you want to open auctions in Web-browser\n'
-                  '8 - If you want to close program\n')
+                  '8 - If you want to sort by ascending auctions\n'
+                  '9 - If you want to close program\n')
             n = int(input("Type number: "))
 
             if n == 1:
@@ -74,6 +75,8 @@ class Start:
                 print()
                 self.browser.open_in_browser()
             if n == 8:
+                self.car_dict = self.show.price_asc()
+            if n == 9:
                 break
 
 start = Start()

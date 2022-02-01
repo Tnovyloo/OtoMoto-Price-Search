@@ -27,5 +27,5 @@ def get_url():
 def save_url(url):
     with open('url.txt', 'w') as file:
         file.write(url)
-        file.close()
+        # file.close()
         print('Your link was saved!')

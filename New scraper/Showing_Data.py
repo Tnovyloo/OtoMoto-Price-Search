@@ -16,3 +16,8 @@ class ShowingData:
         """Showing label"""
         for price, car in self.car_dict.items():
             print(f"Price - {price} {self.user_input} / Link - {car}")
+
+    def price_asc(self):
+        sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict)}
+        self.car_dict = sorted_dict
+        return self.car_dict
