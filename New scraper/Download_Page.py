@@ -41,7 +41,7 @@ class DownloadPage:
             self.page_list = []
             for page in webpages:
                 self.page_list.append(page.text)
-            print(self.page_list)
+            print(f'Amount of pages: {self.page_list[-1]}')
             return func
 
         @find_page
