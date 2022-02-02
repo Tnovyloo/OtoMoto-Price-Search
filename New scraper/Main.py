@@ -33,13 +33,13 @@ class Start:
 
         self.browser = BrowserModule(link_cars=self.link_cars_list)
 
-        self.importdata = ImportData()
+        self.import_data = ImportData()
 
     def start(self):
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
-        while n != 9:
+        while n != 10:
             print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
@@ -49,7 +49,8 @@ class Start:
                   '6 - If you want to save URL\n'
                   '7 - If you want to open auctions in Web-browser\n'
                   '8 - If you want to sort by ascending auctions\n'
-                  '9 - If you want to close program\n')
+                  '9 - If you want to sort by descending auctions\n'
+                  '10 - If you want to close program\n')
             n = int(input("Type number: "))
 
             if n == 1:
@@ -62,9 +63,9 @@ class Start:
                 #TODO jezeli lista jest pusta to powiadom o tym
                 self.save.saving_to_txt()
             if n == 4:
-                self.importdata.import_from_txt()
-                self.show.user_input = self.importdata.userinput
-                self.show.price_cars_list = self.importdata.price_list
+                self.import_data.import_from_txt()
+                self.show.user_input = self.import_data.userinput
+                self.show.price_cars_list = self.import_data.price_list
             if n == 5:
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
@@ -77,6 +78,8 @@ class Start:
             if n == 8:
                 self.car_dict = self.show.price_asc()
             if n == 9:
+                self.car_dict = self.show.price_dsc()
+            if n == 10:
                 break
 
 start = Start()

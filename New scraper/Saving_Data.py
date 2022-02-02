@@ -8,6 +8,7 @@ class SavingToTxt:
         name = input("Type file name: ")
         print(f"\nSaving data to {name}.txt file\n")
         file = open(f"{name}.txt", 'a')
+
         for key, value in self.car_dict.items():
             file.writelines(f"Price {str(key).replace(' ', '')} {self.currency} - Link {value}\n")
         file.close()

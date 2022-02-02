@@ -21,3 +21,8 @@ class ShowingData:
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict)}
         self.car_dict = sorted_dict
         return self.car_dict
+
+    def price_dsc(self):
+        sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict, reverse=True)}
+        self.car_dict = sorted_dict
+        return self.car_dict
