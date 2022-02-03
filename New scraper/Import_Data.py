@@ -1,9 +1,6 @@
 import glob
 
 class ImportData:
-    #potrzebujemy zwrocic self user input
-    # price cars list
-    # link cars list
     def __init__(self):
         self.price_list = []
         self.link_list = []
@@ -12,21 +9,19 @@ class ImportData:
 
     def import_from_txt(self):
         # print(glob.glob('./*.txt'))
-        imports = glob.glob('./*.txt')
-        if len(imports) > 0:
-            for num, value in enumerate(imports, 1):
-                print(f"{num}. {value[2:]}")
-            choice = int(input("Type a number of file: "))
-            if 1 <= choice <= len(imports):
-                name = imports[choice-1]
+        imports = glob.glob('./*.txt') # List of '.txt' files in dict
+        if len(imports) > 0: # If imports is not empty
+            for num, value in enumerate(imports, start=1):
+                print(f"{num}. {value[2:]}") # Number is used to choose '.txt' file
+            choice = int(input("Type a number of file: ")) # Input number
+            if 1 <= choice <= len(imports): # If choice >= 1 and choice is smaller than length of imports
+                name = imports[choice-1] # Chosen '.txt' file to open
                 print(name[2:])
                 with open(f"{name}", 'r') as file:
-                    #odpowiednio przydziel wartosci do
-                    # zmiennych ktore nastepnie zwroc
-                    templist = []
+                    temp_list = []
                     for line in file:
-                        templist.append(line.rstrip())
                         # print(len(line.rstrip().split()))
+                        temp_list.append(line.rstrip()) # Assign the appropriate data to variables
                         self.price_list.append(line.rstrip().split(" ")[1])
                         self.link_list.append(line.rstrip().split(" ")[5])
                         self.userinput = line.rstrip().split(" ")[2]

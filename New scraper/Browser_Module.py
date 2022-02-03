@@ -13,13 +13,13 @@ class BrowserModule:
             if user_input == "y": # If 'yes', go on next steps
                 if count_of_tabs <= len(self.link_cars_list): # Check if count of tabs are smaller than list
                     for i in range(x, x+count_of_tabs):
-                        if i > len(self.link_cars_list): # Check if i are not greater than len of URLS
-                            return False
+                        if i > len(self.link_cars_list): # Check if 'i' are not greater than len of URLS
+                            return False # End while loop
                         else:
                             webbrowser.open_new_tab(self.link_cars_list[i]) # Open new tab in default browser
                 else:
                     print(f"{count_of_tabs} > {len(self.link_cars_list)}")
-                    return False
-                x += count_of_tabs
+                    return False  # End while loop
+                x += count_of_tabs # Iterate count of opened tabs
             else:
-                return False
+                return False # End while loop

@@ -55,12 +55,10 @@ class Start:
 
             if n == 1:
                 self.show.show_label()
-                #TODO Price ascending
             if n == 2:
                 self.user_input = self.currency.currency_rate()
                 self.show.user_input = self.user_input
             if n == 3:
-                #TODO jezeli lista jest pusta to powiadom o tym
                 self.save.saving_to_txt()
             if n == 4:
                 self.import_data.import_from_txt()
@@ -81,6 +79,7 @@ class Start:
                 self.car_dict = self.show.price_dsc()
             if n == 10:
                 break
+            #TODO Connect with MySQL and create data
 
 start = Start()
 start.start()
