@@ -7,6 +7,7 @@ from Currency_Module import Currency
 from Browser_Module import BrowserModule
 from Import_Data import  ImportData
 from URL_Module import get_url, save_url
+from Fuel_Data import show_fuel_price
 
 class Start:
     def __init__(self):
@@ -39,7 +40,7 @@ class Start:
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
-        while n != 10:
+        while n != 11:
             print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
@@ -50,7 +51,8 @@ class Start:
                   '7 - If you want to open auctions in Web-browser\n'
                   '8 - If you want to sort by ascending auctions\n'
                   '9 - If you want to sort by descending auctions\n'
-                  '10 - If you want to close program\n')
+                  '10 - If you want to print fuel prices\n'
+                  '11 - If you want to close program\n')
             n = int(input("Type number: "))
 
             if n == 1:
@@ -78,8 +80,11 @@ class Start:
             if n == 9:
                 self.car_dict = self.show.price_dsc()
             if n == 10:
+                show_fuel_price()
+            if n == 11:
                 break
-            #TODO Connect with MySQL and create data
+            #TODO Connect with MySQL and create database
+            #TODO Fix find price module
 
 start = Start()
 start.start()
