@@ -84,7 +84,6 @@ class Start:
             if n == 11:
                 break
             #TODO Connect with MySQL and create database
-            #TODO Fix find price module
 
 start = Start()
 start.start()

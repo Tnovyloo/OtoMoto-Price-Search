@@ -9,7 +9,6 @@ def show_fuel_price():
 
 def find_price(province):
     # print(df[df['Unnamed: 0'].astype(str).str.contains(woj)])
-    #TODO Problem with user interface
     province_price = df[df['Unnamed: 0'].astype(str).str.contains(province)].values[0]
 
     fuel_95 = str(province_price[1:][0])
