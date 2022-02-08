@@ -7,7 +7,7 @@ from Currency_Module import Currency
 from Browser_Module import BrowserModule
 from Import_Data import  ImportData
 from URL_Module import get_url, save_url
-from Fuel_Data import show_fuel_price
+from Fuel_Data import show_fuel_price ,find_price
 
 class Start:
     def __init__(self):
@@ -36,6 +36,7 @@ class Start:
 
         self.import_data = ImportData()
 
+
     def start(self):
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
@@ -55,33 +56,34 @@ class Start:
                   '11 - If you want to close program\n')
             n = int(input("Type number: "))
 
-            if n == 1:
+            if n == 1: # Print label
                 self.show.show_label()
-            if n == 2:
+            if n == 2: # Change currency
                 self.user_input = self.currency.currency_rate()
                 self.show.user_input = self.user_input
-            if n == 3:
+            if n == 3: # Save data to txt
                 self.save.saving_to_txt()
-            if n == 4:
+            if n == 4: # Import data from txt
                 self.import_data.import_from_txt()
                 self.show.user_input = self.import_data.userinput
                 self.show.price_cars_list = self.import_data.price_list
-            if n == 5:
+            if n == 5: # Change URL
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
                 self.page.downloading_page()
-            if n == 6:
+            if n == 6: # Save URL
                 save_url(self.URL)
-            if n == 7:
+            if n == 7: # Open in browser
                 print()
                 self.browser.open_in_browser()
-            if n == 8:
+            if n == 8: # Show by price ascending
                 self.car_dict = self.show.price_asc()
-            if n == 9:
+            if n == 9: # Show by price descending
                 self.car_dict = self.show.price_dsc()
-            if n == 10:
+            if n == 10: # Show fuel data
                 show_fuel_price()
-            if n == 11:
+                find_price(province=(input("Type province (for example 'małopolskie'): ").lower()))
+            if n == 11: # Break
                 break
             #TODO Connect with MySQL and create database
 
