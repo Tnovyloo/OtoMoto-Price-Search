@@ -5,14 +5,16 @@ class Currency:
         self.car_dict = car_dict # car dict with links and prize
         self.user_input = user_input # New currency
         self.actual_currency = "PLN" # Actual currency
+        self.multiplier = 1 # Actual multiplier of currency
 
-    def currency_rate(self):
+    def change_currency(self):
         """Refactoring currency method"""
         c = CurrencyRates() # Method with currency rates
         self.user_input = input("Type currency (EUR, GBP, USD): ").upper() # Input new currency
         print("Please wait a second")
         currency = c.get_rate(self.actual_currency,
                               self.user_input) # Get the rate of currency
+        self.multiplier = currency # Set multiplier of currency
         temp_dict = list(self.car_dict.items()) # Converse car dict to list
         self.car_dict.clear() # Clear dict
         self.actual_currency = self.user_input # Change old currency to new
@@ -25,3 +27,6 @@ class Currency:
 
         print("\nChanging currency completed!")
         return self.actual_currency #Returning actual currency
+
+    def currency_rate(self):
+        return self.multiplier

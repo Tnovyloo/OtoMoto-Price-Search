@@ -13,28 +13,29 @@ class Start:
     def __init__(self):
         load_dotenv()
         # self.URL = os.environ.get("URL")
-        self.user_input = 'PLN'
+        self.actual_currency = 'PLN'
+        self.currency_multiplier = 1
         self.URL = get_url()
 
-        self.page = DownloadPage(url=self.URL)
+        self.page_module = DownloadPage(url=self.URL)
         self.price_cars_list,\
-        self.link_cars_list = self.page.downloading_page()
+        self.link_cars_list = self.page_module.downloading_page()
 
-        self.show = ShowingData(cars_price=self.price_cars_list,
-                           cars_link=self.link_cars_list,
-                           user_input=self.user_input)
+        self.show_data_module = ShowingData(cars_price=self.price_cars_list,
+                                            cars_link=self.link_cars_list,
+                                            user_input=self.actual_currency)
 
-        self.car_dict = self.show.create_label()
+        self.car_dict = self.show_data_module.create_label()
 
-        self.save = SavingToTxt(car_dict=self.car_dict,
-                                currency=self.user_input)
+        self.save_module = SavingToTxt(car_dict=self.car_dict,
+                                       currency=self.actual_currency)
 
-        self.currency = Currency(car_dict=self.car_dict,
-                            user_input=self.user_input)
+        self.currency_module = Currency(car_dict=self.car_dict,
+                                        user_input=self.actual_currency)
 
-        self.browser = BrowserModule(link_cars=self.link_cars_list)
+        self.browser_module = BrowserModule(link_cars=self.link_cars_list)
 
-        self.import_data = ImportData()
+        self.import_data_module = ImportData()
 
 
     def start(self):
@@ -57,32 +58,37 @@ class Start:
             n = int(input("Type number: "))
 
             if n == 1: # Print label
-                self.show.show_label()
+                self.show_data_module.show_label()
             if n == 2: # Change currency
-                self.user_input = self.currency.currency_rate()
-                self.show.user_input = self.user_input
+                self.actual_currency = self.currency_module.change_currency()
+                self.show_data_module.user_input = self.actual_currency
+                self.currency_multiplier = self.currency_module.currency_rate()
             if n == 3: # Save data to txt
-                self.save.saving_to_txt()
+                #TODO Module must save actual multipler to working fine
+                self.save_module.saving_to_txt()
             if n == 4: # Import data from txt
-                self.import_data.import_from_txt()
-                self.show.user_input = self.import_data.userinput
-                self.show.price_cars_list = self.import_data.price_list
+                #TODO Module dont importing currency
+                self.import_data_module.import_from_txt()
+                self.show_data_module.user_input = self.import_data_module.userinput
+                self.show_data_module.price_cars_list = self.import_data_module.price_list
             if n == 5: # Change URL
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
-                self.page.downloading_page()
+                self.page_module.downloading_page()
             if n == 6: # Save URL
                 save_url(self.URL)
             if n == 7: # Open in browser
                 print()
-                self.browser.open_in_browser()
+                self.browser_module.open_in_browser()
             if n == 8: # Show by price ascending
-                self.car_dict = self.show.price_asc()
+                self.car_dict = self.show_data_module.price_asc()
             if n == 9: # Show by price descending
-                self.car_dict = self.show.price_dsc()
+                self.car_dict = self.show_data_module.price_dsc()
             if n == 10: # Show fuel data
                 show_fuel_price()
-                find_price(province=(input("Type province (for example 'małopolskie'): ").lower()))
+                find_price(province=(input("Type province (for example 'małopolskie'): ").lower()),
+                           multiplier=self.currency_multiplier,
+                           currency=self.actual_currency)
             if n == 11: # Break
                 break
             #TODO Connect with MySQL and create database
