@@ -1,6 +1,6 @@
 class ShowingData:
     def __init__(self, cars_price, cars_link, user_input):
-        self.user_input = user_input # User chosen currency
+        self.currency = user_input # User chosen currency
         self.price_cars_list = cars_price # Prices list
         self.link_cars_list = cars_link # Links list
         zip_iterator = zip(self.price_cars_list, self.link_cars_list) # Create dict with prices and links
@@ -15,7 +15,7 @@ class ShowingData:
     def show_label(self):
         """Showing 'Price', 'Currency', 'Link'"""
         for price, car in self.car_dict.items():
-            print(f"Price - {price} {self.user_input} / Link - {car}")
+            print(f"Price - {price} {self.currency} / Link - {car}")
 
     def price_asc(self):
         """Changes ordinary of prices by ascending"""

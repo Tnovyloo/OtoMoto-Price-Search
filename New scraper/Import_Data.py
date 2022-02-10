@@ -5,7 +5,7 @@ class ImportData:
         self.price_list = []
         self.link_list = []
         self.car_dict = {}
-        self.userinput = ''
+        self.currency = ''
 
     def import_from_txt(self):
         # print(glob.glob('./*.txt'))
@@ -24,8 +24,7 @@ class ImportData:
                         temp_list.append(line.rstrip()) # Assign the appropriate data to variables
                         self.price_list.append(line.rstrip().split(" ")[1])
                         self.link_list.append(line.rstrip().split(" ")[5])
-                        self.userinput = line.rstrip().split(" ")[2]
+                        self.currency = line.rstrip().split(" ")[2]
 
-        # print(self.userinput)
-        # print(self.price_list)
-        # print(self.link_list)
+    def return_currency(self):
+        return self.currency
