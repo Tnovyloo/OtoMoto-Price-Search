@@ -105,5 +105,6 @@ class Start:
                 break
             #TODO Connect with MySQL and create database
 
-start = Start()
-start.start()
+if __name__ == '__main__':
+    start = Start()
+    start.start()
