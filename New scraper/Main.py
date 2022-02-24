@@ -100,9 +100,13 @@ class Start:
                 find_price(province=(input("Type province (for example 'małopolskie'): ").lower()),
                            multiplier=self.currency_multiplier,
                            currency=self.actual_currency)
-
-            if n == 11: # Break
-                break
+            #TESTING
+            if n == 15: # Break
+                import sys
+                temp1 = [link for link in self.link_cars_list]
+                print(sys.getsizeof(temp1))
+                temp2 = (link for link in self.link_cars_list)
+                print(sys.getsizeof(temp2))
             #TODO Connect with MySQL and create database
 
 if __name__ == '__main__':

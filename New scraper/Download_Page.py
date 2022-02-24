@@ -33,9 +33,9 @@ class DownloadPage:
             webpages = self.soup.findAll('a', class_='ooa-g4wbjr ekxs86z0')  # Sometimes the class of 'a' on te web-page is changed
             if len(webpages) == 0: # Check if there is problem with finding amount of pages
                 print("There is a problem with Otomoto servers")
-            self.page_list = []
-            for page in webpages:
-                self.page_list.append(page.text) # Appending numbers of pages
+
+            self.page_list = [page.text for page in webpages] # Appending numbers of pages
+
             print(f'Amount of pages: {self.page_list[-1]}')
             return func
 
