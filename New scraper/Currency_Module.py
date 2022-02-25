@@ -19,7 +19,8 @@ class Currency:
         self.car_dict.clear() # Clear dict
         self.actual_currency = self.user_input # Change old currency to new
         for key, value in temp_dict:
-            if type(key) == str: # If key is string
+            if isinstance(key, str):
+            # if type(key) == str: # If key is string
                 new_key = round(float(key.replace(' ', '')) * currency) # Change prize
             else: # Else key is not string
                 new_key = round(float(key) * currency) # Change prize
