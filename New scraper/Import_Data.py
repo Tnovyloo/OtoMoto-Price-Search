@@ -25,6 +25,6 @@ class ImportData:
                         self.price_list.append(line.rstrip().split(" ")[1])
                         self.link_list.append(line.rstrip().split(" ")[5])
                         self.currency = line.rstrip().split(" ")[2]
-
+        #TODO cos sie popsulo z wczytyaniem :)
     def return_currency(self):
         return self.currency

@@ -30,14 +30,15 @@ class DownloadPage:
         def find_page(func):
             """Finding amount of pages"""
             # webpages = self.soup.findAll('span', class_="page")
-            webpages = self.soup.findAll('a', class_='ooa-g4wbjr ekxs86z0')  # Sometimes the class of 'a' on te web-page is changed
-            if len(webpages) == 0: # Check if there is problem with finding amount of pages
-                print("There is a problem with Otomoto servers")
+            if not self.page_list:
+                webpages = self.soup.findAll('a', class_='ooa-g4wbjr ekxs86z0')  # Sometimes the class of 'a' on te web-page is changed
+                if len(webpages) == 0: # Check if there is problem with finding amount of pages
+                    print("There is a problem with Otomoto servers")
 
-            self.page_list = [page.text for page in webpages] # Appending numbers of pages
+                self.page_list = [page.text for page in webpages] # Appending numbers of pages
 
-            print(f'Amount of pages: {self.page_list[-1]}')
-            return func
+                print(f'Amount of pages: {self.page_list[-1]}')
+                return func
 
         @find_page
         def go_to_page():

@@ -17,7 +17,7 @@ def find_price(province, multiplier, currency):
     fuel_on_plus = round(((float(province_price[1:][3]) * 0.01) * multiplier), 2)
     fuel_lpg = round(((float(province_price[1:][4]) * 0.01) * multiplier), 2)
 
-    #TODO CHANGE CURRENCY
+    #TODO CHANGE CURRENCY - nie dziala
     print(f"Average price for fuels in '{province.capitalize()}' province\n"
           f"95 - {fuel_95} {currency}/l\n"
           f"98 - {fuel_98} {currency}/l\n"
