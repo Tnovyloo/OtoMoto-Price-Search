@@ -16,8 +16,6 @@ def find_data(url):
     for price in cars_price:
         price_cars_list.append(str(price.text).strip('PLN '))  # Appending price to list
 
-    # price_cars_list = [str(price.text).strip('PLN ') for price in cars_price] #TODO test comprehension
-
     cars_links = inner_soup.findAll('h2',
                                    class_='e1b25f6f13 ooa-1mgjl0z-Text eu5v0x0')  # Sometimes the class of 'h2' on te web-page is changed
 
