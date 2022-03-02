@@ -17,6 +17,7 @@ class ShowingData:
         for price, car in self.car_dict.items():
             print(f"Price - {price} {self.currency} / Link - {car}")
 
+    # TODO Fix sort price problem
     def price_asc(self):
         """Changes ordinary of prices by ascending"""
         #TODO STRIP PRICE / PROBLEM WITH PRICE PLN FIRST READ
@@ -27,10 +28,7 @@ class ShowingData:
 
         for key, value in temp_dict:
             new_key = str(key).replace(' ', '') # Replace empty space in price
-            # if type(key) == str:
-            #     new_key = key.replace(' ', '')
-            # else:
-            #     new_key = str(key).replace(' ', '')
+            # new_key = str(key).strip(' ')
             self.car_dict[new_key] = value # Assign new key to value
 
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict.keys())} #Sort dict
@@ -38,6 +36,7 @@ class ShowingData:
 
         return self.car_dict
 
+    #TODO Fix sort price problem
     def price_dsc(self):
         """Changes ordinary of prices by descending"""
         temp_dict = list(self.car_dict.items())
@@ -45,10 +44,7 @@ class ShowingData:
 
         for key, value in temp_dict:
             new_key = str(key).replace(' ', '')  # Replace empty space in price
-            # if type(key) == str:
-            #     new_key = key.replace(' ', '')
-            # else:
-            #     new_key = str(key).replace(' ', '')
+            # new_key = str(key).strip(' ')
             self.car_dict[new_key] = value # Assign new key to value
 
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict, reverse=True)}

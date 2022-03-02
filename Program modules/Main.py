@@ -17,9 +17,13 @@ class Start:
         self.currency_multiplier = 1
         self.URL = get_url()
 
+        # self.page_module = DownloadPage(url=self.URL)
+        # self.price_cars_list,\
+        # self.link_cars_list = self.page_module.downloading_page()
+
+        #TESTING NEW FASTER SCRAPER
         self.page_module = DownloadPage(url=self.URL)
-        self.price_cars_list,\
-        self.link_cars_list = self.page_module.downloading_page()
+        self.price_cars_list, self.link_cars_list = self.page_module.start()
 
         self.show_data_module = ShowingData(cars_price=self.price_cars_list,
                                             cars_link=self.link_cars_list,
@@ -80,8 +84,8 @@ class Start:
             if n == 5: # Change URL
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
-                self.page_module.downloading_page()
-
+                # self.page_module.downloading_page()
+                self.page_module.start()
             if n == 6: # Save URL
                 save_url(self.URL)
 
@@ -100,13 +104,6 @@ class Start:
                 find_price(province=(input("Type province (for example 'małopolskie'): ").lower()),
                            multiplier=self.currency_multiplier,
                            currency=self.actual_currency)
-            #TESTING
-            if n == 15: # Break
-                import sys
-                temp1 = [link for link in self.link_cars_list]
-                print(sys.getsizeof(temp1))
-                temp2 = (link for link in self.link_cars_list)
-                print(sys.getsizeof(temp2))
             #TODO Connect with MySQL and create database
 
 if __name__ == '__main__':
