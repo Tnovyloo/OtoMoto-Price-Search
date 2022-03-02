@@ -21,9 +21,9 @@ class Currency:
         for key, value in temp_dict:
             if isinstance(key, str):
             # if type(key) == str: # If key is string
-                new_key = round(float(key.replace(' ', '')) * currency) # Change prize
+                new_key = round(float(key.replace(' ', '')) * self.multiplier) # Change prize
             else: # Else key is not string
-                new_key = round(float(key) * currency) # Change prize
+                new_key = round(float(key) * self.multiplier) # Change prize
             self.car_dict[new_key] = value # Save new key and old link
 
         print("\nChanging currency completed!")

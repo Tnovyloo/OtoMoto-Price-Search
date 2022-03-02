@@ -68,6 +68,7 @@ class Start:
                 self.actual_currency = self.currency_module.change_currency()
                 self.show_data_module.currency = self.actual_currency
                 self.currency_multiplier = self.currency_module.currency_rate()
+                print(self.currency_multiplier)
 
             if n == 3: # Save data to txt
                 self.save_module.currency = self.actual_currency
@@ -101,7 +102,7 @@ class Start:
 
             if n == 10: # Show fuel data
                 show_fuel_price()
-                find_price(province=(input("Type province (for example 'małopolskie'): ").lower()),
+                find_price(province=(input("Type number of province: ")),
                            multiplier=self.currency_multiplier,
                            currency=self.actual_currency)
             #TODO Connect with MySQL and create database

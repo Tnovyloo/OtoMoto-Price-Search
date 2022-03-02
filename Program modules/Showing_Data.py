@@ -32,6 +32,7 @@ class ShowingData:
             self.car_dict[new_key] = value # Assign new key to value
 
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict.keys())} #Sort dict
+        self.car_dict.clear()
         self.car_dict = sorted_dict # Assign sorted dict to car dict
 
         return self.car_dict
@@ -47,7 +48,9 @@ class ShowingData:
             # new_key = str(key).strip(' ')
             self.car_dict[new_key] = value # Assign new key to value
 
+
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict, reverse=True)}
+        self.car_dict.clear()
         self.car_dict = sorted_dict # Assign sorted dict to car dict
 
         return self.car_dict
