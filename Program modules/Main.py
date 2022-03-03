@@ -7,7 +7,7 @@ from Currency_Module import Currency
 from Browser_Module import BrowserModule
 from Import_Data import  ImportData
 from URL_Module import get_url, save_url
-from Fuel_Data import show_fuel_price ,find_price
+from Fuel_Data import fuel_price_data, show_fuel_price
 
 class Start:
     def __init__(self):
@@ -102,9 +102,9 @@ class Start:
 
             if n == 10: # Show fuel data
                 show_fuel_price()
-                find_price(province=(input("Type number of province: ")),
-                           multiplier=self.currency_multiplier,
-                           currency=self.actual_currency)
+                fuel_price_data(province=(input("Type number of province: ")),
+                                multiplier=self.currency_multiplier,
+                                currency=self.actual_currency)
             #TODO Connect with MySQL and create database
 
 if __name__ == '__main__':

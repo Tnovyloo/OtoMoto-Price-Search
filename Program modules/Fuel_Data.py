@@ -3,16 +3,20 @@ import pandas as pd
 URL = "https://www.autocentrum.pl/paliwa/ceny-paliw/"
 table = pd.read_html(URL)
 df = table[0]
+df.rename(columns={'Unnamed: 0':'Provinces'}, inplace=True)
 
 def show_fuel_price():
-    df_to_print = df['Unnamed: 0']
+    # print("Dataframe columns:", df.columns)
+    df_to_print = df['Provinces']
     print(df_to_print.to_string())
 
-def find_price(province, multiplier, currency):
-    # print(df[df['Unnamed: 0'].astype(str).str.contains(woj)])
-    # print(df['Unnamed: 0'])
-    user_province = df['Unnamed: 0'].iloc[int(province)]
-    province_price = df[df['Unnamed: 0'].astype(str).str.contains(user_province)].values[0]
+def fuel_price_data(province, multiplier, currency):
+    """Getting price from specific province
+    province -> its number from 0-16 meaning as province
+    multiplier -> its multiplier from PLN to current currency
+    currency -> its actual currency to print in program"""
+    user_province = df['Provinces'].iloc[int(province)]
+    province_price = df[df['Provinces'].astype(str).str.contains(user_province)].values[0]
 
     if currency == 'PLN':
         multiplier = 1
@@ -31,5 +35,11 @@ def find_price(province, multiplier, currency):
           f"LPG - {fuel_lpg} {currency}/l"
           )
 
+
+# if __name__ == "__main__":
+#    # stuff only to run when not called via 'import' here
+#    show_fuel_price()
+#    fuel_price_data()
+
 # show_fuel_price()
-# find_price(province= (input("Type province: ")), multiplier=1, currency='PLN')
+# fuel_price_data(province= (input("Type province: ")), multiplier=1, currency='PLN')
