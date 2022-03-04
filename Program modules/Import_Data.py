@@ -9,7 +9,7 @@ class ImportData:
 
     def import_from_txt(self):
         # print(glob.glob('./*.txt'))
-        imports = glob.glob('./*.txt') # List of '.txt' files in dict
+        imports = glob.glob('../User saves/*.txt') # List of '.txt' files in dict
         if len(imports) > 0: # If imports is not empty
             for num, value in enumerate(imports, start=1):
                 print(f"{num}. {value[2:]}") # Number is used to choose '.txt' file

@@ -1,5 +1,5 @@
 def get_url():
-    with open('url.txt', 'r+') as file: # Open url.txt with URLs
+    with open('../User saves/url.txt', 'r+') as file: # Open url.txt with URLs
         urls_list = [] # Stores URls
         for line in file:
             urls_list.append(line.strip()) # Append striped line to list
@@ -26,6 +26,6 @@ def get_url():
 
 def save_url(url):
     """Simple function to save URL"""
-    with open('url.txt', 'a') as file:
+    with open('../User saves/url.txt', 'a') as file:
         file.write(f'{url}\n')
         print('Your link was saved!')
