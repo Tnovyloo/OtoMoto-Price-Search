@@ -21,7 +21,6 @@ class Start:
         # self.price_cars_list,\
         # self.link_cars_list = self.page_module.downloading_page()
 
-        #TESTING NEW FASTER SCRAPER
         self.page_module = DownloadPage(url=self.URL)
         self.price_cars_list, self.link_cars_list = self.page_module.start()
 
