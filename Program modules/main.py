@@ -13,39 +13,32 @@ class Start:
     def __init__(self):
         load_dotenv()
         # self.URL = os.environ.get("URL")
-        self.actual_currency = 'PLN'
-        self.currency_multiplier = 1
+        self.actual_currency = 'PLN' #
+        self.currency_multiplier = 1 # PLN is the scraped currency
         self.URL = get_url()
 
-        # self.page_module = DownloadPage(url=self.URL)
-        # self.price_cars_list,\
-        # self.link_cars_list = self.page_module.downloading_page()
-
-        self.page_module = DownloadPage(url=self.URL)
-        self.price_cars_list, self.link_cars_list = self.page_module.start()
+        self.page_module = DownloadPage(url=self.URL) # Creating Download page variable with current URL
+        self.price_cars_list, self.urls_cars_list = self.page_module.start() # Run Download page module and assign scraped value from URL to variables
 
         self.show_data_module = ShowingData(cars_price=self.price_cars_list,
-                                            cars_link=self.link_cars_list,
-                                            user_input=self.actual_currency)
+                                            cars_link=self.urls_cars_list,
+                                            user_input=self.actual_currency) # Order data to User interface module
 
-        self.car_dict = self.show_data_module.create_label()
-
-        self.save_module = SavingToTxt(car_dict=self.car_dict,
-                                       currency=self.actual_currency)
+        self.car_dict = self.show_data_module.create_label() # Create dict - label with URLs to cars and their prices
 
         self.currency_module = Currency(car_dict=self.car_dict,
-                                        user_input=self.actual_currency)
+                                        user_input=self.actual_currency) # Create currency module class with actual currency and data
 
-        self.browser_module = BrowserModule(link_cars=self.link_cars_list)
+        self.browser_module = BrowserModule(link_cars=self.urls_cars_list) # Create browser module with URLs.
 
-        self.import_data_module = ImportData()
-
+        self.import_data_module = ImportData() # Initialize Import data module
 
     def start(self):
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
         while n != 11:
+            # User interface
             print('\nType:\n'
                   '1 - If you want to print label\n'
                   '2 - If you want to change Currency\n'
@@ -70,6 +63,8 @@ class Start:
                 print(self.currency_multiplier)
 
             if n == 3: # Save data to txt
+                self.save_module = SavingToTxt(car_dict=self.car_dict,
+                                               currency=self.actual_currency)
                 self.save_module.currency = self.actual_currency
                 self.save_module.saving_to_txt()
 

@@ -41,5 +41,3 @@ def fuel_price_data(province, multiplier, currency):
 #    show_fuel_price()
 #    fuel_price_data()
 
-# show_fuel_price()
-# fuel_price_data(province= (input("Type province: ")), multiplier=1, currency='PLN')
