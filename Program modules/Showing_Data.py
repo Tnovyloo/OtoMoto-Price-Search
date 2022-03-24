@@ -5,6 +5,7 @@ class ShowingData:
         self.link_cars_list = cars_link # Links list
         zip_iterator = zip(self.price_cars_list, self.link_cars_list) # Create dict with prices and links
         self.car_dict = dict(zip_iterator)
+        self.alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
     def create_label(self):
         """Returning created dict"""
@@ -24,7 +25,8 @@ class ShowingData:
         self.car_dict.clear() # Clear dict from all data
 
         for key, value in temp_dict:
-            new_key = int(str(key).replace(' ', '')) # Replace empty space in price
+            # new_key = int(str(key).replace(' ', '')) # Replace empty space in price
+            new_key = int(str(key).replace(' ', '').translate({ord(i): None for i in self.alphabet})) # Remove empty space and letters in price
             self.car_dict[new_key] = value # Assign new key to value
 
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict.keys())} #Sort dict
@@ -39,8 +41,7 @@ class ShowingData:
         self.car_dict.clear()
 
         for key, value in temp_dict:
-            new_key = int(str(key).replace(' ', ''))  # Replace empty space in price
-            # new_key = str(key).strip(' ')
+            new_key = int(str(key).replace(' ', '').translate({ord(i): None for i in self.alphabet})) # Remove empty space and letters in price
             self.car_dict[new_key] = value # Assign new key to value
 
         sorted_dict = {k: self.car_dict[k] for k in sorted(self.car_dict, reverse=True)}
