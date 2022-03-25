@@ -100,6 +100,9 @@ class Start:
                                 multiplier=self.currency_multiplier,
                                 currency=self.actual_currency)
             #TODO Connect with MySQL and create database
+            # Create table that contains brand, model, generation, for example |BMW| |Series 5| |E39| |Price| |URL|
+            # - Program could to recognize it automatically from URL or User have to input values.
+            # - Create new brands tables when its new to our database.
 
 if __name__ == '__main__':
     start = Start()
