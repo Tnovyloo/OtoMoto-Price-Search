@@ -103,6 +103,14 @@ class Start:
             # Create table that contains brand, model, generation, for example |BMW| |Series 5| |E39| |Price| |URL|
             # - Program could to recognize it automatically from URL or User have to input values.
             # - Create new brands tables when its new to our database.
+            # - How its gonna work?
+            #   - 0.Send all scraped data to Database module.
+            #   - 1.From specific car URL find out what is it a car and model.
+            #   - 2.Check if brand table exists.
+            #           if not - Create table
+            #                       Add data of model and price to Database
+            #           if yes - Add data of model and price to Database
+            #   - 3.Do it for each element in lists.
 
 if __name__ == '__main__':
     start = Start()
