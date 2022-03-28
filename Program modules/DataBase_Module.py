@@ -12,3 +12,16 @@ class SQL_Module:
                                  password=db_password,
                                  database=db_name)
 
+    def checkTableExists(self, dbcon, tablename):
+        dbcur = dbcon.cursor()
+        dbcur.execute("""
+            SELECT COUNT(*)
+            FROM information_schema.tables
+            WHERE table_name = '{0}'
+            """.format(tablename.replace('\'', '\'\'')))
+        if dbcur.fetchone()[0] == 1:
+            dbcur.close()
+            return True
+
+        dbcur.close()
+        return False
