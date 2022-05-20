@@ -1,6 +1,8 @@
 # OtoMoto-Price-Searcher
-Program scraps all auctions from 'OtoMoto.pl' URL, be enabled to change currency, print and sort prices with URLs from auctions.
-Open URLs in browser by module and save auctions to your txt file.
+Program downloads all auctions from 'OtoMoto.pl' URL, be enabled to change currency, sort by auction prices.
+Open auctions in browser by program and save them to your txt file.
+Also program could download fuel price data and shows it by individual province. 
+
 
 To run you have to have installed these libraries:
 
