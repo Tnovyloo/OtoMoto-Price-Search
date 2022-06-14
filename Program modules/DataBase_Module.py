@@ -2,7 +2,7 @@ from os import environ
 import mysql.connector
 
 class SQL_Module:
-    def __init__(self, url):
+    def __init__(self, url, car_dict):
         db_host = environ.get('DB_HOST')
         db_user = environ.get('DB_USER')
         db_password = environ.get('DB_PASSWORD')
@@ -12,18 +12,12 @@ class SQL_Module:
                                     password=db_password,
                                     )
         self.url = url
-        # db = mysql.connector.connect(host="localhost",
-        #                              user="root",
-        #                              passwd="***REMOVED***",
-        #                              database="otomotoprogram")
-
-        # mycursor = db.cursor()
-        # mycursor.execute("CREATE DATABASE otomotoprogram")
+        self.car_dict = car_dict
 
     def create_table(self):
+        dbcursor = self.db.cursor()
         brand = self.extractDataFromURL(self.url)
         if self.checkTableExists(brand) is False:
-            dbcursor = self.db.cursor()
             dbcursor.execute(
                 f"""CREATE TABLE `otomotoprogram`.`{brand}` (
                   `id` INT NOT NULL,
@@ -32,6 +26,9 @@ class SQL_Module:
                   PRIMARY KEY (`id`));""")
         else:
             print(f"there is a table like {brand}")
+
+        for url, prize in self.car_dict:
+            dbcursor.execute(f"""INSERT INTO {brand} (car, price) values ({url},{prize})""")
 
     def checkTableExists(self, tablename):
         dbcursor = self.db.cursor()
@@ -53,6 +50,6 @@ class SQL_Module:
         print(brand)
         return brand
 
-url = 'https://www.otomoto.pl/oferta/bmw-seria-5-piekne-rodzinne-bmw-520d-ID6Ei1VH.html'
-sql = SQL_Module(url)
-sql.create_table()
+# url = 'https://www.otomoto.pl/oferta/bmw-seria-5-piekne-rodzinne-bmw-520d-ID6Ei1VH.html'
+# sql = SQL_Module(url)
+# sql.create_table()

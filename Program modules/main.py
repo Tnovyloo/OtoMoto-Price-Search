@@ -8,6 +8,7 @@ from Browser_Module import BrowserModule
 from Import_Data import  ImportData
 from URL_Module import get_url, save_url
 from Fuel_Data import fuel_price_data, show_fuel_price
+from DataBase_Module import SQL_Module
 
 class Start:
     def __init__(self):
@@ -37,7 +38,7 @@ class Start:
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
-        while n != 11:
+        while n != 12:
             # User interface
             print('\nType:\n'
                   '1 - If you want to print label\n'
@@ -50,7 +51,8 @@ class Start:
                   '8 - If you want to sort by ascending auctions\n'
                   '9 - If you want to sort by descending auctions\n'
                   '10 - If you want to print fuel prices\n'
-                  '11 - If you want to close program\n')
+                  '11 - If you want to add data to MySQL database\n'
+                  '12 - If you want to close program\n')
             n = int(input("Type number: "))
 
             if n == 1: # Print label
@@ -99,6 +101,13 @@ class Start:
                 fuel_price_data(province=(input("Type number of province: ")),
                                 multiplier=self.currency_multiplier,
                                 currency=self.actual_currency)
+
+            if n == 11:
+                print(self.car_dict)
+                db = SQL_Module(self.URL, self.car_dict)
+                db.create_table()
+
+
             #TODO Connect with MySQL and create database
             # Create table that contains brand, model, generation, for example |BMW| |Series 5| |E39| |Price| |URL|
             # - Program could to recognize it automatically from URL or User have to input values.
