@@ -2,7 +2,7 @@ from os import environ
 import mysql.connector
 
 class SQL_Module:
-    def __init__(self, url, car_dict):
+    def __init__(self, url, car_dict, actual_currency):
         db_host = environ.get('DB_HOST')
         db_user = environ.get('DB_USER')
         db_password = environ.get('DB_PASSWORD')
@@ -13,6 +13,7 @@ class SQL_Module:
                                     )
         self.url = url
         self.car_dict = car_dict
+        self.actual_currency = actual_currency
 
     def create_table(self):
         dbcursor = self.db.cursor()
@@ -27,8 +28,9 @@ class SQL_Module:
         else:
             print(f"there is a table like {brand}")
 
-        for url, prize in self.car_dict:
-            dbcursor.execute(f"""INSERT INTO {brand} (car, price) values ({url},{prize})""")
+        dbcursor.execute("USE otomotoprogram")
+        for car in list(self.car_dict):
+            dbcursor.execute(f"""INSERT INTO {brand} (url, price) values ({car[1]},{car[0]})""")
 
     def checkTableExists(self, tablename):
         dbcursor = self.db.cursor()

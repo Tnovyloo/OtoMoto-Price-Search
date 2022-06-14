@@ -104,7 +104,7 @@ class Start:
 
             if n == 11:
                 print(self.car_dict)
-                db = SQL_Module(self.URL, self.car_dict)
+                db = SQL_Module(self.URL, self.car_dict, self.actual_currency)
                 db.create_table()
 
 
