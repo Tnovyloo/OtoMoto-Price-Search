@@ -28,9 +28,13 @@ class SQL_Module:
         else:
             print(f"there is a table like {brand}")
 
-        dbcursor.execute("USE otomotoprogram")
-        for car in list(self.car_dict):
-            dbcursor.execute(f"""INSERT INTO {brand} (url, price) values ({car[1]},{car[0]})""")
+        dbcursor.execute("USE otomotoprogram;")
+
+
+        for car in self.car_dict.items():
+            dbcursor.execute(f"""INSERT INTO {brand} (url, price) VALUES ('{car[1]}', {int(str(car[0]).replace(' ', ''))})""")
+        dbcursor.close()
+        self.db.commit()
 
     def checkTableExists(self, tablename):
         dbcursor = self.db.cursor()
