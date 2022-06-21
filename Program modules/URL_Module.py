@@ -1,10 +1,10 @@
-def get_url():
-    with open('../User saves/url.txt', 'r+') as file: # Open url.txt with URLs
-        urls_list = [] # Stores URls
-        for line in file:
-            urls_list.append(line.strip()) # Append striped line to list
+import os
 
-        if len(urls_list) > 0: # If storage of urls is not empty
+def get_url():
+    with open('../User Files/url.txt', 'r+') as file: # Open url.txt with URLs
+        txt_file_size = os.path.getsize('../User Files/url.txt')
+        if txt_file_size > 0: # If storage of urls is not empty
+            urls_list = [line.rstrip() for line in file] # Stores URls
             for num, element in enumerate(urls_list, start=1): # Simple user interface
                 print(f"{num} - {element}")
             choice = input('Type number of URL or type URL: ')
@@ -14,18 +14,20 @@ def get_url():
                 return url
             except ValueError:
                 urls_list.append(choice)
-                file.write(choice)
+                file.write(choice + '\n')
                 return choice
+
         else: # Else if there is no URL in list
             print(f'There is no urls, please add one')
             temp = input('Type URL: ')
-            urls_list.append(temp)
-            file.write(temp) # Write user Link
-            return urls_list[0]
+            # urls_list.append(temp)
+            file.write(temp + '\n') # Write user Link
+            # return urls_list[0]
+            return temp
 
 
 def save_url(url):
     """Simple function to save URL"""
-    with open('../User saves/url.txt', 'a') as file:
+    with open('../User Files/url.txt', 'a') as file:
         file.write(f'{url}\n')
         print('Your link was saved!')
