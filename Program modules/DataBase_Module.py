@@ -17,6 +17,7 @@ class SQL_Module:
 
     def start(self):
         dbcursor = self.db.cursor()
+        dbcursor.execute("CREATE DATABASE IF NOT EXISTS otomotoprogram")
         dbcursor.execute("USE otomotoprogram;")
 
         # for car in self.car_dict.items():
