@@ -17,7 +17,7 @@ Bentley
 BMW 
 BMW-ALPINA 
 Bobcat 
-Bolloré 
+Bollor
 Brilliance 
 Bugatti 
 Buick 
@@ -27,7 +27,7 @@ Caterham
 Chatenet 
 Chevrolet 
 Chrysler 
-Citroën 
+Citroen
 Comarth 
 Cupra 
 Dacia 
@@ -119,7 +119,7 @@ Saturn
 Scion 
 Seat 
 Shuanghuan 
-Škoda 
+Skoda
 Smart 
 SsangYong 
 Subaru 
@@ -146,8 +146,8 @@ VTN
 Warszawa 
 Wartburg 
 Weismann 
-Wo³ga 
+Wolga
 Yugo 
-Zaporo¿ec 
+Zaporozec
 Zastava 
-¯uk 
+zuk

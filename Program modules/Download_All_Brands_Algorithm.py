@@ -6,9 +6,9 @@ soup_brands = soup.findAll('span', class_='ooa-19uij40')
 print(soup_brands)
 brands = []
 for brand in soup_brands:
-    print(f'Before modify: {brand.text}')
+    # print(f'Before modify: {brand.text}')
     new_brand = ''.join([i for i in brand.text if not i.isdigit()]).replace('()','')
-    print(f"After modify: {new_brand}\n")
+    # print(f"After modify: {new_brand}\n")
     brands.append(new_brand)
 
 with open('../Program files/brands.txt','a') as file:
