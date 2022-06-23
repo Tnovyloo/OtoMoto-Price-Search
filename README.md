@@ -10,5 +10,6 @@ To run you have to have installed these libraries:
     -Beautifully Soup 4.10.0,
     -Pandas 1.4.0,
     -Forex Python 1.8
+    -MySQL Connector 8.0.28 
 
 When you imported all libraries you could use Scraper easily.
