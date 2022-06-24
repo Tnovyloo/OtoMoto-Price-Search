@@ -16,7 +16,7 @@ class Start:
         # self.URL = os.environ.get("URL")
         self.actual_currency = 'PLN' #
         self.currency_multiplier = 1 # PLN is the scraped currency
-        self.URL = get_url() #TODO fix bugs with download data.
+        self.URL = get_url()
 
         self.page_module = DownloadPage(url=self.URL) # Creating Download page variable with current URL
         self.price_cars_list, self.urls_cars_list = self.page_module.start() # Run Download page module and assign scraped value from URL to variables
