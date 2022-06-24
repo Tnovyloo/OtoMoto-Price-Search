@@ -7,7 +7,7 @@ def get_url():
             urls_list = [line.rstrip() for line in file] # Stores URls
             for num, element in enumerate(urls_list, start=1): # Simple user interface
                 print(f"{num} - {element}")
-            choice = input('Type number of URL or type URL: ')
+            choice = input('Type number of URL or paste one: ')
             try: # If int(choice) returns ValueError then choice must be URL
                 int(choice)
                 url = urls_list[int(choice)-1]
@@ -18,7 +18,7 @@ def get_url():
                 return choice
 
         else: # Else if there is no URL in list
-            print(f'There is no urls, please add one')
+            print(f"There isn't urls in your saves yet, please paste one")
             temp = input('Type URL: ')
             # urls_list.append(temp)
             file.write(temp + '\n') # Write user Link
@@ -30,4 +30,4 @@ def save_url(url):
     """Simple function to save URL"""
     with open('../User Files/url.txt', 'a') as file:
         file.write(f'{url}\n')
-        print('Your link was saved!')
+        print('Your URL is now saved!')
