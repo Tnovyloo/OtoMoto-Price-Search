@@ -1,6 +1,7 @@
 import requests
 import bs4 as bs
 from multiprocessing.dummy import Pool as ThreadPool
+from URL_Module import  check_type_of_url
 
 class DownloadPage:
     def __init__(self, url):
@@ -82,16 +83,21 @@ class DownloadPage:
         webpages = soup.findAll('a',
                                 class_='ooa-g4wbjr ekxs86z0')  # Sometimes the class of 'a' on te web-page is changed
         if len(webpages) == 0:  # Check if there is problem with finding amount of pages
-            print("There is a problem with Otomoto servers")
-
-        self.page_list = [page.text for page in webpages]  # Appending numbers of pages
+            self.page_list = ['0']
+        else:
+            self.page_list = [page.text for page in webpages]  # Appending numbers of pages
 
         print(f'Amount of pages: {self.page_list[-1]}')
         return self.page_list
 
     def start(self):
         count_pages = int(self.find_page(self.url)[-1])  # Last index from page_list is amount of pages
-        func_url = (self.url[:] + f"&page=0")  # Append '$page=0' to URL with is used on next steps
+
+        if check_type_of_url(self.url) is True:
+            func_url = (self.url[:] + f"?page=0")  # Append '?page=0' to URL which is used on next steps
+        else:
+            func_url = (self.url[:] + f"&page=0")  # Append '$page=0' to URL which is used on next steps
+
         url_pages = [func_url[:-1] + f'{page}' for page in range(count_pages + 1)]
 
         pool = ThreadPool(4)

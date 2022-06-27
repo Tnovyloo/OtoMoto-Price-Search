@@ -31,3 +31,47 @@ def save_url(url):
     with open('../User Files/url.txt', 'a') as file:
         file.write(f'{url}\n')
         print('Your URL is now saved!')
+
+def check_type_of_url(url):
+    # print(url)
+    temp_list = url.split('/')
+
+    if indexExists(temp_list, 5) is False:
+        # return print("True '?' - no url[5]") #TODO - Add this descriptions in Program logs
+        return True
+    else:
+        if indexExists(temp_list, 6):
+            # return print("False '&' - search in url[6]")
+            return False
+    if indexExists(temp_list, 5):
+        if temp_list[5].__contains__("search"):
+            # return print("False '&' - url[5] contains search")
+            return False
+        else:
+            if indexExists(temp_list, 6):
+                if temp_list[6].__contains__("search"):
+                    # return print("False '&' - url[6] contains search")
+                    return False
+                else:
+                    # return print("True '?' - url[6] no contains search")
+                    return True
+            # return print("True '?' - url no contains 'search'")
+            return True
+
+def indexExists(list, index):
+    try:
+        list[index]
+        return True
+    except IndexError:
+        return False
+
+#
+# urls_to_tests = ["https://www.otomoto.pl/osobowe/bentley",  #true ?
+#          "https://www.otomoto.pl/osobowe/alfa-romeo--bentley",  # true ?
+#          "https://www.otomoto.pl/osobowe/alfa-romeo--bentley/seg-sedan",  # true ?
+#          "https://www.otomoto.pl/osobowe/mercedes-benz/s-klasa",  # true ?
+#          "https://www.otomoto.pl/osobowe/audi/a4/seg-cabrio?search%5Bfilter_enum_generation%5D=gen-b8-2007-2015",  # false &
+#          "https://www.otomoto.pl/osobowe/mercedes-benz/s-klasa?search%5Bfilter_enum_generation%5D=gen-w140-1992-1998",  # false &
+#          "https://www.otomoto.pl/osobowe/alfa-romeo--bentley/seg-sedan?search%5Bfilter_enum_fuel_type%5D=petrol&page=3", ] # false &
+
+# loop = [example(text) for text in texts]

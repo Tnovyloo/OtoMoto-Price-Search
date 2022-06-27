@@ -1,2 +1,13 @@
 https://www.otomoto.pl/osobowe/bmw/seria-5/seg-sedan?search%5Bfilter_enum_generation%5D=gen-e39-1996-2003&search%5Bfilter_float_engine_capacity%3Afrom%5D=2490&search%5Border%5D=filter_float_price%3Aasc
 https://www.otomoto.pl/osobowe/bentley--ferrari--gmc--lamborghini
+https://www.otomoto.pl/osobowe/bentley
+https://www.otomoto.pl/osobowe/bentley
+https://www.otomoto.pl/osobowe/audi/a4/seg-cabrio?search%5Bfilter_enum_generation%5D=gen-b8-2007-2015
+https://www.otomoto.pl/osobowe/mercedes-benz/s-klasa/seg-sedan?search%5Bfilter_enum_generation%5D=gen-w140-1992-1998
+https://www.otomoto.pl/osobowe/bentley
+https://www.otomoto.pl/osobowe/alfa-romeo--bentley
+https://www.otomoto.pl/osobowe/alfa-romeo--bentley/seg-sedan
+https://www.otomoto.pl/osobowe/mercedes-benz/s-klasa
+https://www.otomoto.pl/osobowe/audi/a4/seg-cabrio?search%5Bfilter_enum_generation%5D=gen-b8-2007-2015
+https://www.otomoto.pl/osobowe/mercedes-benz/s-klasa?search%5Bfilter_enum_generation%5D=gen-w140-1992-1998
+https://www.otomoto.pl/osobowe/alfa-romeo--bentley/seg-sedan?search%5Bfilter_enum_fuel_type%5D=petrol

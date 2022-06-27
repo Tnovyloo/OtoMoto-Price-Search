@@ -13,9 +13,8 @@ from DataBase_Module import SQL_Module
 class Start:
     def __init__(self):
         load_dotenv()
-        # self.URL = os.environ.get("URL")
         self.actual_currency = 'PLN' #
-        self.currency_multiplier = 1 # PLN is the scraped currency
+        self.currency_multiplier = 1 # PLN is the actual currency
         self.URL = get_url()
 
         self.page_module = DownloadPage(url=self.URL) # Creating Download page variable with current URL
@@ -38,21 +37,21 @@ class Start:
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
         n = -1
-        while n != 12:
+        while n != 12: #TODO ITS NOT DOWNLOADING RIGHT URL
             # User interface
             print('\nType:\n'
-                  '1 - If you want to print label\n'
-                  '2 - If you want to change Currency\n'
-                  '3 - If you want to save auctions in .txt\n'
-                  '4 - If you want to import auctions from .txt\n'
-                  '5 - If you want to change URL\n'
-                  '6 - If you want to save URL\n'
-                  '7 - If you want to open auctions in Web-browser\n'
-                  '8 - If you want to sort by ascending auctions\n'
-                  '9 - If you want to sort by descending auctions\n'
-                  '10 - If you want to print fuel prices\n'
-                  '11 - If you want to add data to MySQL database\n'
-                  '12 - If you want to close program\n')
+                  '1 - Print label\n'
+                  '2 - Change Currency\n'
+                  '3 - Save auctions in .txt\n'
+                  '4 - Import auctions from .txt\n'
+                  '5 - Change URL\n'
+                  '6 - Save URL\n'
+                  '7 - Open auctions in Web-browser\n'
+                  '8 - Sort by ascending auctions\n'
+                  '9 - Sort by descending auctions\n'
+                  '10 - Print fuel prices\n'
+                  '11 - Add data to MySQL database\n'
+                  '12 - Close program\n')
             n = int(input("Type number: "))
 
             if n == 1: # Print label
@@ -78,7 +77,7 @@ class Start:
                 self.currency_module.actual_currency = self.actual_currency # Set actual currency to Currency class
                 self.currency_multiplier = self.currency_module.currency_rate() # Get the currency rate
 
-            if n == 5: # Change URL
+            if n == 5: # Change URL #TODO choose URL from saved data. and rework that module.
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
                 # self.page_module.downloading_page()
