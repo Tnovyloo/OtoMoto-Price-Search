@@ -1,18 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Requirements of data in auction:
-# Marka pojazdu*
-# Model pojazdu*
-# Rok produkcji*
-# Wersja*
-# Moc*
-# Liczba drzwi*
-# Rodzaj paliwa*
-# Pojemność skokowa*
-# Skrzynia biegów*
-# Typ nadwozia*
-# Kolor*
 
 urls = ["https://www.otomoto.pl/oferta/bmw-seria-5-m-pakiet-525i-192-km-bezowy-srodek-ID6EDngF.html",
         "https://www.otomoto.pl/oferta/bmw-seria-5-e39m-pakiet520imanualtopasblaupieknystan-ID6ED1By.html"]
@@ -40,4 +28,24 @@ def find_more_data(url):
     car_data = zip(labels, data)
     return car_data
 
-print(list(find_more_data(urls[0])))
+result = list(find_more_data(urls[0]))
+# print(result)
+
+for element in result:
+    print(element)
+
+
+#TODO stworz nowa baze danych i tam dawaj szczegolowe info odnosnie aukcji, zrob
+#odpowiedni schemat tabelii aby zawrzeć wymagane dane podane poniżej
+# Requirements of data in auction:
+# Marka pojazdu* - text
+# Model pojazdu* - text
+# Rok produkcji* - int
+# Wersja* - text
+# Moc* - int
+# Liczba drzwi* - int
+# Rodzaj paliwa* - text
+# Pojemność skokowa* - int
+# Skrzynia biegów* - text
+# Typ nadwozia* - text
+# Kolor* - text
