@@ -28,24 +28,44 @@ def find_more_data(url):
     car_data = zip(labels, data)
     return car_data
 
-result = list(find_more_data(urls[0]))
-# print(result)
 
-for element in result:
-    print(element)
+def get_more_data(data):
+    result = {'Marka pojazdu' : '',
+            'Model pojazdu' : '',
+            'Rok produkcji' : '',
+            'Wersja' : '',
+            'Moc' : '',
+            'Liczba drzwi' : '',
+            'Rodzaj paliwa' : '',
+            'Pojemność skokowa' : '',
+            'Skrzynia biegów' : '',
+            'Typ nadwozia' : '',
+            'Kolor' : ''}
 
+    for element, answer in list(data):
+        # print(element)
+        if element in result:
+            result[element] = answer
+
+    return result
+
+
+download_result = list(find_more_data(urls[0]))
+x = get_more_data(download_result)
+print(x)
 
 #TODO stworz nowa baze danych i tam dawaj szczegolowe info odnosnie aukcji, zrob
 #odpowiedni schemat tabelii aby zawrzeć wymagane dane podane poniżej
 # Requirements of data in auction:
-# Marka pojazdu* - text
-# Model pojazdu* - text
-# Rok produkcji* - int
-# Wersja* - text
-# Moc* - int
-# Liczba drzwi* - int
-# Rodzaj paliwa* - text
-# Pojemność skokowa* - int
-# Skrzynia biegów* - text
-# Typ nadwozia* - text
-# Kolor* - text
+# 'Marka pojazdu' text
+# 'Model pojazdu' text
+# 'Rok produkcji' int
+# 'Wersja' - text
+# 'Moc' int
+# 'Liczba drzwi' int
+# 'Rodzaj paliwa' text
+# 'Pojemność skokowa' int
+# 'Skrzynia biegów' text
+# 'Typ nadwozia' text
+# 'Kolor' text
+
