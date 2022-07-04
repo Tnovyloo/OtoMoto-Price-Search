@@ -1,14 +1,15 @@
 # import os
 from dotenv import load_dotenv
-from Download_Page import DownloadPage
-from Showing_Data import ShowingData
+from Scraping_Data_Module import DownloadPage
+from Showing_Data_Module import ShowingData
 from Saving_Data import SavingToTxt
 from Currency_Module import Currency
 from Browser_Module import BrowserModule
 from Import_Data import  ImportData
 from URL_Module import get_url, save_url
 from Fuel_Data import fuel_price_data, show_fuel_price
-from DataBase_Module import SQL_Module
+from SQL_Module import SQL_Module
+from SQL_more_data import SQL_MoreData
 
 class Start:
     def __init__(self):
@@ -36,8 +37,8 @@ class Start:
     def start(self):
         print('\nWelcome to OtoMoto Car-Scraper!\n')
 
-        n = -1
-        while n != 12: #TODO ITS NOT DOWNLOADING RIGHT URL
+        user_input = -1
+        while user_input != 13:
             # User interface
             print('\nType:\n'
                   '1 - Print label\n'
@@ -50,26 +51,27 @@ class Start:
                   '8 - Sort by ascending auctions\n'
                   '9 - Sort by descending auctions\n'
                   '10 - Print fuel prices\n'
-                  '11 - Add data to MySQL database\n'
-                  '12 - Close program\n')
-            n = int(input("Type number: "))
+                  '11 - Add data to MySQL database (a curtailed version)\n'
+                  '12 - Add data to MySQL database (advanced version)\n'
+                  '13 - Close program\n')
+            user_input = int(input("Type number: "))
 
-            if n == 1: # Print label
+            if user_input == 1: # Print label
                 self.show_data_module.show_label()
 
-            if n == 2: # Change currency
+            if user_input == 2: # Change currency
                 self.actual_currency = self.currency_module.change_currency()
                 self.show_data_module.currency = self.actual_currency
                 self.currency_multiplier = self.currency_module.currency_rate()
                 print(self.currency_multiplier)
 
-            if n == 3: # Save data to txt
+            if user_input == 3: # Save data to txt
                 self.save_module = SavingToTxt(car_dict=self.car_dict,
                                                currency=self.actual_currency)
                 self.save_module.currency = self.actual_currency
                 self.save_module.saving_to_txt()
 
-            if n == 4: # Import data from txt
+            if user_input == 4: # Import data from txt
                 self.import_data_module.import_from_txt() # Import from txt module
                 self.show_data_module.currency = self.import_data_module.currency # Set value of currency in 'ShowingData' class
                 self.show_data_module.price_cars_list = self.import_data_module.price_list # Set value of price list in 'ShowingData' class
@@ -77,34 +79,39 @@ class Start:
                 self.currency_module.actual_currency = self.actual_currency # Set actual currency to Currency class
                 self.currency_multiplier = self.currency_module.currency_rate() # Get the currency rate
 
-            if n == 5: # Change URL #TODO choose URL from saved data. and rework that module.
+            if user_input == 5: # Change URL #TODO choose URL from saved data. and rework that module.
                 self.URL = input("Type URL from Otomoto: ")
                 print("Now i will download data")
                 # self.page_module.downloading_page()
                 self.page_module.start()
 
-            if n == 6: # Save URL
+            if user_input == 6: # Save URL
                 save_url(self.URL)
 
-            if n == 7: # Open in browser
+            if user_input == 7: # Open in browser
                 print()
                 self.browser_module.open_in_browser()
 
-            if n == 8: # Show by price ascending
+            if user_input == 8: # Show by price ascending
                 self.car_dict = self.show_data_module.price_asc()
 
-            if n == 9: # Show by price descending
+            if user_input == 9: # Show by price descending
                 self.car_dict = self.show_data_module.price_dsc()
 
-            if n == 10: # Show fuel data
+            if user_input == 10: # Show fuel data
                 show_fuel_price()
                 fuel_price_data(province=(input("Type number of province: ")),
                                 multiplier=self.currency_multiplier,
                                 currency=self.actual_currency)
 
-            if n == 11: #Use SQL module
+            if user_input == 11: #Use SQL module
                 db = SQL_Module(self.URL, self.car_dict, self.actual_currency)
                 db.start()
+
+            if user_input == 12: #Use advanced SQL module
+                db = SQL_MoreData(self.car_dict)
+                db.start()
+
 
 if __name__ == '__main__':
     start = Start()

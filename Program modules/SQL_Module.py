@@ -20,17 +20,6 @@ class SQL_Module:
         dbcursor.execute("CREATE DATABASE IF NOT EXISTS otomotoprogram")
         dbcursor.execute("USE otomotoprogram;")
 
-        # for car in self.car_dict.items():
-        #     brand = self.extractDataFromURL(car[1])
-        #     if self.checkTableExists(brand) is False: #Create table if brand table doesnt exist
-        #         dbcursor.execute(
-        #             f"""CREATE TABLE `otomotoprogram`.`{brand}` (
-        #                               `id` INT NOT NULL AUTO_INCREMENT,
-        #                               `url` LONGTEXT NOT NULL,
-        #                               `price` INT NOT NULL,
-        #                               PRIMARY KEY (`id`),
-        #                               UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
-        #                             """)
         if self.checkTableExists() is False:
             self.createAllBrandsTables()
 
@@ -42,18 +31,6 @@ class SQL_Module:
         self.db.commit()
 
     def checkTableExists(self):
-        # dbcursor = self.db.cursor()
-        # dbcursor.execute("""
-        #     SELECT COUNT(*)
-        #     FROM information_schema.tables
-        #     WHERE table_name = '{0}'
-        #     """.format(table_name.replace('\'', '\'\'')))
-        # if dbcursor.fetchone()[0] == 1:
-        #     dbcursor.close()
-        #     return True
-        #
-        # dbcursor.close()
-        # return False
         dbcursor = self.db.cursor()
         dbcursor.execute("""
                         SELECT COUNT(*)
@@ -87,7 +64,3 @@ class SQL_Module:
                                                 """)
         dbcursor.close()
         self.db.commit()
-
-# url = 'https://www.otomoto.pl/oferta/bmw-seria-5-piekne-rodzinne-bmw-520d-ID6Ei1VH.html'
-# sql = SQL_Module(url)
-# sql.create_table()

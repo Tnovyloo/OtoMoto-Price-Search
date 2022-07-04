@@ -170,7 +170,7 @@ Bentley
 BMW 
 BMW-ALPINA 
 Bobcat 
-Bolloré 
+Bollorï¿½ 
 Brilliance 
 Bugatti 
 Buick 
@@ -180,7 +180,7 @@ Caterham
 Chatenet 
 Chevrolet 
 Chrysler 
-Citroën 
+Citroï¿½n 
 Comarth 
 Cupra 
 Dacia 
@@ -272,7 +272,7 @@ Saturn
 Scion 
 Seat 
 Shuanghuan 
-Škoda 
+ï¿½koda 
 Smart 
 SsangYong 
 Subaru 
@@ -299,11 +299,11 @@ VTN
 Warszawa 
 Wartburg 
 Weismann 
-Wo³ga 
+Woï¿½ga 
 Yugo 
-Zaporo¿ec 
+Zaporoï¿½ec 
 Zastava 
-¯uk 
+ï¿½uk 
 Wszystkie marki
 Abarth 
 Acura 
@@ -323,7 +323,7 @@ Bentley
 BMW 
 BMW-ALPINA 
 Bobcat 
-Bolloré 
+Bollorï¿½ 
 Brilliance 
 Bugatti 
 Buick 
@@ -333,7 +333,7 @@ Caterham
 Chatenet 
 Chevrolet 
 Chrysler 
-Citroën 
+Citroï¿½n 
 Comarth 
 Cupra 
 Dacia 
@@ -391,7 +391,7 @@ Maserati
 Maybach 
 Mazda 
 McLaren 
-Mercedes-Benz 
+Mercedes
 Mercury 
 MG 
 Microcar 
@@ -425,7 +425,7 @@ Saturn
 Scion 
 Seat 
 Shuanghuan 
-Škoda 
+ï¿½koda 
 Smart 
 SsangYong 
 Subaru 
@@ -452,8 +452,8 @@ VTN
 Warszawa 
 Wartburg 
 Weismann 
-Wo³ga 
+Woï¿½ga 
 Yugo 
-Zaporo¿ec 
+Zaporoï¿½ec 
 Zastava 
-¯uk 
+ï¿½uk 
