@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-
-urls = ["https://www.otomoto.pl/oferta/bmw-seria-5-m-pakiet-525i-192-km-bezowy-srodek-ID6EDngF.html",
-        "https://www.otomoto.pl/oferta/bmw-seria-5-e39m-pakiet520imanualtopasblaupieknystan-ID6ED1By.html"]
+# urls = ["https://www.otomoto.pl/oferta/bmw-seria-5-mpakiet-imola-2-5i-170km-brc-skora-xenon-grzane-fotele-tempomat-pdc-ID6EIDBZ.html",
+#         "https://www.otomoto.pl/oferta/audi-q3-ID6ELbSD.html",
+#         "https://www.otomoto.pl/oferta/mercedes-benz-klasa-s-kamera-night-vision-zadbany-jasny-srodek-ID6E8pW0.html"]
 
 def find_more_data(url):
     html = requests.get(url).text
@@ -43,29 +43,30 @@ def get_more_data(data):
             'Kolor' : ''}
 
     for element, answer in list(data):
-        # print(element)
         if element in result:
             result[element] = answer
 
     return result
-
-
-download_result = list(find_more_data(urls[0]))
-x = get_more_data(download_result)
-print(x)
-
-#TODO stworz nowa baze danych i tam dawaj szczegolowe info odnosnie aukcji, zrob
-#odpowiedni schemat tabelii aby zawrzeć wymagane dane podane poniżej
-# Requirements of data in auction:
-# 'Marka pojazdu' text
-# 'Model pojazdu' text
-# 'Rok produkcji' int
-# 'Wersja' - text
-# 'Moc' int
-# 'Liczba drzwi' int
-# 'Rodzaj paliwa' text
-# 'Pojemność skokowa' int
-# 'Skrzynia biegów' text
-# 'Typ nadwozia' text
-# 'Kolor' text
-
+#
+# #Quick Test
+# # for element in urls:
+# #     download_result = list(find_more_data(element))
+# #     x = get_more_data(download_result)
+# #     print(x)
+#
+#
+# #TODO stworz nowa baze danych i tam dawaj szczegolowe info odnosnie aukcji, zrob
+# #odpowiedni schemat tabelii aby zawrzeć wymagane dane podane poniżej
+# # Requirements of data in auction:
+# # 'Marka pojazdu' text
+# # 'Model pojazdu' text
+# # 'Rok produkcji' int
+# # 'Wersja' - text
+# # 'Moc' int
+# # 'Liczba drzwi' int
+# # 'Rodzaj paliwa' text
+# # 'Pojemność skokowa' int
+# # 'Skrzynia biegów' text
+# # 'Typ nadwozia' text
+# # 'Kolor' text
+#

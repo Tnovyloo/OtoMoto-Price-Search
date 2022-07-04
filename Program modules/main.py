@@ -1,6 +1,6 @@
 # import os
 from dotenv import load_dotenv
-from Download_Page import DownloadPage
+from Scraping_Data_Module import DownloadPage
 from Showing_Data import ShowingData
 from Saving_Data import SavingToTxt
 from Currency_Module import Currency
