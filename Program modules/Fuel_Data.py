@@ -27,6 +27,9 @@ def fuel_price_data(province, multiplier, currency):
     fuel_on_plus = round(((float(province_price[1:][3]) * 0.01) * multiplier), 2)
     fuel_lpg = round(((float(province_price[1:][4]) * 0.01) * multiplier), 2)
 
+    # fuels = [round(((float(province_price[1:][i]) * 0.01) * multiplier), 2) for i in range(4)]
+    # print(fuels)
+
     print(f"Average price for fuels in '{province.capitalize()}' province\n"
           f"95 - {fuel_95} {currency}/l\n"
           f"98 - {fuel_98} {currency}/l\n"

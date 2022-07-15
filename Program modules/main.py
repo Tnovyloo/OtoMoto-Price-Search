@@ -79,7 +79,7 @@ class Start:
                 self.currency_module.actual_currency = self.actual_currency # Set actual currency to Currency class
                 self.currency_multiplier = self.currency_module.currency_rate() # Get the currency rate
 
-            if user_input == 5: # Change URL #TODO choose URL from saved data. and rework that module.
+            if user_input == 5: # Change URL
                 # self.URL = input("Type URL from Otomoto: ")
                 # print("Now i will download data")
                 # # self.page_module.downloading_page()
